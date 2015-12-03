@@ -29,7 +29,8 @@ declare module 'camelot-unchained' {
     import Population from '__camelot-unchained/classes/Population';
     import events from '__camelot-unchained/events/events';
     import stores from '__camelot-unchained/stores/stores';
-    export { CoreSettings, clientInterface, client, abilityTags, archetype, buildUIMode, channelId, dxKeyCodes, emotes, jsKeyCodes, jsToDXKeyCodeMap, race, soundEvents, tagConstraintType, tags, Ability, Combatant, Player, Character, ControlGame, Population, events, stores };
+    import components from '__camelot-unchained/components/components';
+    export { CoreSettings, clientInterface, client, abilityTags, archetype, buildUIMode, channelId, dxKeyCodes, emotes, jsKeyCodes, jsToDXKeyCodeMap, race, soundEvents, tagConstraintType, tags, Ability, Combatant, Player, Character, ControlGame, Population, events, stores, components };
 }
 
 declare module '__camelot-unchained/CoreSettings' {
@@ -1105,6 +1106,26 @@ declare module '__camelot-unchained/stores/stores' {
                 actions: {};
             };
         };
+    };
+    export default _default;
+}
+
+declare module '__camelot-unchained/components/components' {
+    var _default: {
+        UnitFrame: __React.ClassicComponentClass<any>;
+        Effects: __React.ClassicComponentClass<any>;
+        HealthBar: __React.ClassicComponentClass<any>;
+        HealthText: __React.ClassicComponentClass<any>;
+        Name: __React.ClassicComponentClass<any>;
+        Portrait: __React.ClassicComponentClass<any>;
+        StaminaBar: __React.ClassicComponentClass<any>;
+        StaminaText: __React.ClassicComponentClass<any>;
+        Injuries: __React.ClassicComponentClass<any>;
+        Injury: __React.ClassicComponentClass<any>;
+        InjuryLocation: __React.ClassicComponentClass<any>;
+        InjuryBar: __React.ClassicComponentClass<any>;
+        InjuryText: __React.ClassicComponentClass<any>;
+        InjuryWounds: __React.ClassicComponentClass<any>;
     };
     export default _default;
 }
