@@ -1,0 +1,61 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "noImplicitAny": true,
+        "removeComments": false,
+        "outDir": "./tmp",
+        "sourceMap": false,
+        "jsx": "react"
+    },
+    "formatCodeOptions": {
+        "indentSize": 2,
+        "tabSize": 2,
+        "newLineCharacter": "\r\n",
+        "convertTabsToSpaces": true,
+        "insertSpaceAfterCommaDelimiter": true,
+        "insertSpaceAfterSemicolonInForStatements": true,
+        "insertSpaceBeforeAndAfterBinaryOperators": true,
+        "insertSpaceAfterKeywordsInControlFlowStatements": true,
+        "insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+        "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+        "placeOpenBraceOnNewLineForFunctions": false,
+        "placeOpenBraceOnNewLineForControlBlocks": false
+    },
+    "compileOnSave": false,
+    "buildOnSave": false,
+    "filesGlob": [
+        "./src/**/*.ts",
+        "./src/**/*.tsx"
+    ],
+    "files": [
+        "./src/ts/CoreSettings.ts",
+        "./src/ts/classes/Ability.ts",
+        "./src/ts/classes/BaneBoon.ts",
+        "./src/ts/classes/Character.ts",
+        "./src/ts/classes/Combatant.ts",
+        "./src/ts/classes/ControlGame.ts",
+        "./src/ts/classes/EquippedItems.ts",
+        "./src/ts/classes/Inventory.ts",
+        "./src/ts/classes/Item.ts",
+        "./src/ts/classes/Player.ts",
+        "./src/ts/classes/Population.ts",
+        "./src/ts/client.ts",
+        "./src/ts/clientInterface.ts",
+        "./src/ts/constants/abilityTags.ts",
+        "./src/ts/constants/archetype.ts",
+        "./src/ts/constants/baneBoonCategory.ts",
+        "./src/ts/constants/buildUIMode.ts",
+        "./src/ts/constants/channelId.ts",
+        "./src/ts/constants/dxKeyCodes.ts",
+        "./src/ts/constants/emotes.ts",
+        "./src/ts/constants/itemType.ts",
+        "./src/ts/constants/jsKeyCodes.ts",
+        "./src/ts/constants/jsToDXKeyCodeMap.ts",
+        "./src/ts/constants/race.ts",
+        "./src/ts/constants/soundEvents.ts",
+        "./src/ts/constants/tagConstraintType.ts",
+        "./src/ts/constants/tags.ts",
+        "./src/ts/main.bundle.ts",
+        "./src/ts/main.ts"
+    ]
+}

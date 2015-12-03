@@ -1,0 +1,47 @@
+{
+  "name": "camelot-unchained",
+  "version": "0.1.0",
+  "description": "Camelot Unchained Client Library",
+  "license": "MPL-2.0",
+  "main": "lib/main.js",
+  "contributors": [
+    "JB (codecorsair) <jb@codecorsair.com>",
+    "Mehuge <mehuge@sorcerer.co.uk>",
+    "saddieeiddas <saddie.eiddas@gmail.com>",
+    "sYc0n <mathias.nachtmann@t-online.de>"
+  ],
+  "keywords": [
+    "Camelot",
+    "Unchained",
+    "cu",
+    "cu-ui",
+    "cu-core"
+  ],
+  "files": [
+    "lib/",
+    "ts/",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/csegames/camelot-unchained-client-library.git"
+  },
+  "dependencies": {
+    "bourbon": "^4.2.6",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "reflux": "^0.3.0",
+    "reflux-tsd": "saddieeiddas/reflux-tsd",
+    "sass": "^0.5.0"
+  },
+  "devDependencies": {
+    "cu-build-tools": "latest",
+    "gulp": "^3.9.0",
+    "node-sass": "^3.4.2"
+  },
+  "typescript": {
+    "definitions": "./lib/camelot-unchained.d.ts"
+  }
+}
