@@ -29,6 +29,7 @@ import Combatant from './classes/Combatant';
 import Player from './classes/Player';
 import Character from './classes/Character';
 import ControlGame from './classes/ControlGame';
+import Injury from './classes/Injury';
 import Population from './classes/Population';
 
 // modules
@@ -53,17 +54,18 @@ export {
   soundEvents,
   tagConstraintType,
   tags,
-  
+
   // classes
   Ability,
   Combatant,
   Player,
   Character,
   ControlGame,
+  Injury,
   Population,
-  
+
   // modules
   events,
   stores,
-  
+
 }

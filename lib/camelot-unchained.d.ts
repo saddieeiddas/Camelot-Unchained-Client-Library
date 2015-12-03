@@ -26,10 +26,11 @@ declare module 'camelot-unchained' {
     import Player from '__camelot-unchained/classes/Player';
     import Character from '__camelot-unchained/classes/Character';
     import ControlGame from '__camelot-unchained/classes/ControlGame';
+    import Injury from '__camelot-unchained/classes/Injury';
     import Population from '__camelot-unchained/classes/Population';
     import events from '__camelot-unchained/events/events';
     import stores from '__camelot-unchained/stores/stores';
-    export { CoreSettings, clientInterface, client, abilityTags, archetype, buildUIMode, channelId, dxKeyCodes, emotes, jsKeyCodes, jsToDXKeyCodeMap, race, soundEvents, tagConstraintType, tags, Ability, Combatant, Player, Character, ControlGame, Population, events, stores };
+    export { CoreSettings, clientInterface, client, abilityTags, archetype, buildUIMode, channelId, dxKeyCodes, emotes, jsKeyCodes, jsToDXKeyCodeMap, race, soundEvents, tagConstraintType, tags, Ability, Combatant, Player, Character, ControlGame, Injury, Population, events, stores };
 }
 
 declare module '__camelot-unchained/CoreSettings' {
@@ -1024,6 +1025,24 @@ declare module '__camelot-unchained/classes/ControlGame' {
         static create(): ControlGame;
     }
     export default ControlGame;
+}
+
+declare module '__camelot-unchained/classes/Injury' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    class Injury {
+        part: number;
+        health: number;
+        maxHealth: number;
+        wounds: number;
+        constructor(injury?: Injury);
+        refresh(injury?: Injury): void;
+        static create(): Injury;
+    }
+    export default Injury;
 }
 
 declare module '__camelot-unchained/classes/Population' {
