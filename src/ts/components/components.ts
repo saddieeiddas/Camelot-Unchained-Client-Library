@@ -21,7 +21,7 @@ import InjuryBar from './unitframe/components/InjuryBar';
 import InjuryText from './unitframe/components/InjuryText';
 import InjuryWounds from './unitframe/components/InjuryWounds';
 
-export {
+export default {
   UnitFrame,
   Effects,
   HealthBar,

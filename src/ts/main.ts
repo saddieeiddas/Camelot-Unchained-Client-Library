@@ -34,6 +34,7 @@ import Population from './classes/Population';
 // modules
 import events from './events/events';
 import stores from './stores/stores';
+import components from './components/components';
 
 export {
   CoreSettings,
@@ -65,5 +66,5 @@ export {
   // modules
   events,
   stores,
-  
+  components,
 }
