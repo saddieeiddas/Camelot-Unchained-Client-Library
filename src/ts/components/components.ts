@@ -21,6 +21,8 @@ import InjuryBar from './unitframe/components/InjuryBar';
 import InjuryText from './unitframe/components/InjuryText';
 import InjuryWounds from './unitframe/components/InjuryWounds';
 
+import Wounds from './wounds/wounds';
+
 export {
   UnitFrame,
   Effects,
@@ -35,5 +37,6 @@ export {
   InjuryLocation,
   InjuryBar,
   InjuryText,
-  InjuryWounds
+  InjuryWounds,
+  Wounds,
 }
