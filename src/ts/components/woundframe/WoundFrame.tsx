@@ -4,8 +4,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-/// <reference path="../tsd/tsd.d.ts" />
-
 import * as React from 'react';
 import { Doll } from './components/Doll';
 import { Stats } from './components/Stats';
@@ -27,7 +25,7 @@ export class WoundsProps {
 
 export class WoundsState { }
 
-class Wounds extends React.Component<WoundsProps, WoundsState> {
+class WoundFrame extends React.Component<WoundsProps, WoundsState> {
   constructor(props: WoundsProps) {
     super(props);
   }
@@ -48,4 +46,4 @@ class Wounds extends React.Component<WoundsProps, WoundsState> {
   }
 }
 
-export default Wounds;
+export default WoundFrame;
