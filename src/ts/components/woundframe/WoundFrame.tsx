@@ -5,10 +5,10 @@
  */
 
 import * as React from 'react';
-import { Doll } from './components/Doll';
-import { Stats } from './components/Stats';
-import { Buffs } from './components/Buffs';
-import { WoundColors } from './classes/WoundColors';
+import Doll from './components/Doll';
+import Stats from './components/Stats';
+import Buffs from './components/Buffs';
+import WoundColors from './classes/WoundColors';
 
 export class WoundsProps {
   injuries: any[];
@@ -16,11 +16,10 @@ export class WoundsProps {
   healthMax: number;
   stamina: number;
   staminaMax: number;
-  //panic: number;
-  //panicMax: number;
-  //temp: number;
-  //tempMax: number;
-  //colors: any;
+  panic: number;
+  panicMax: number;
+  temp: number;
+  tempMax: number;
 }
 
 export class WoundsState { }
@@ -38,8 +37,8 @@ class WoundFrame extends React.Component<WoundsProps, WoundsState> {
         <Stats
           blood={this.props.health} bloodMax={this.props.healthMax}
           stamina={this.props.stamina} staminaMax={this.props.staminaMax}
-          panic={15} panicMax={55}
-          temp={72} tempMax={96}
+          panic={this.props.panic} panicMax={this.props.panicMax} //15 55
+          temp={this.props.temp} tempMax={this.props.tempMax} // 72 96
           />
       </div>
     );

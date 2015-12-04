@@ -7,21 +7,22 @@
 const defaultColors: string[] = ['#19b24b', '#feeb00', '#fe1e14', '#200000'];
 
 export class WoundColors {
-  private key: string = "cse.wound.colors";
+  private key: string = 'cse.wound.colors';
   private colors: string[];
   constructor() {
     this.load();
   }
   load() : void {
     const value = localStorage.getItem(this.key);
-    if (value && typeof value === "string") {
-      this.colors = value.split(",");
+    if (value && typeof value === 'string') {
+      this.colors = value.split(',');
 
       // stored color validation
       for (var i = 0; i < this.colors.length; i++) {
         const color: string = this.colors[i];
-        if (color.length !== 7 && color.substring(0,0) !== "#") {
-          this.colors[i] = "#ffffff";
+        const isValidColor = ((/(^#[0-9A-F]{6}$)/i.test(color)) && color.length == 7);
+        if (!isValidColor) {
+          this.colors[i] = '#ffffff';
         }
       }
     } else {
@@ -35,3 +36,5 @@ export class WoundColors {
     return this.colors[wound] || defaultColors[0];
   }
 }
+
+export default WoundColors;

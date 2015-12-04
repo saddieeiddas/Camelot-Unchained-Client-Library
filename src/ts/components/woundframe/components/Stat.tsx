@@ -30,3 +30,5 @@ export class Stat extends React.Component<StatProps, StatState> {
     );
   }
 }
+
+export default Stat;

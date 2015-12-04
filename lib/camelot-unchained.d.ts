@@ -1429,6 +1429,10 @@ declare module '__camelot-unchained/components/woundframe/WoundFrame' {
         healthMax: number;
         stamina: number;
         staminaMax: number;
+        panic: number;
+        panicMax: number;
+        temp: number;
+        tempMax: number;
     }
     export class WoundsState {
     }
