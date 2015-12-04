@@ -1,6 +1,6 @@
 {
   "name": "camelot-unchained",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Camelot Unchained Client Library",
   "license": "MPL-2.0",
   "main": "lib/main.js",
@@ -38,8 +38,7 @@
   },
   "devDependencies": {
     "cu-build-tools": "latest",
-    "gulp": "^3.9.0",
-    "node-sass": "^3.4.2"
+    "gulp": "^3.9.0"
   },
   "typescript": {
     "definitions": "./lib/camelot-unchained.d.ts"
