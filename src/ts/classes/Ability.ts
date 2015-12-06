@@ -39,7 +39,7 @@ class Ability {
     return new Ability(obj);
   }
 
-  public static getAllAbilities(logonToken: string, characterID: string, callback: (info: any) => void) {
+  public static getAllAbilities(logonToken: string, characterID: string, callback: (abilities: Ability[]) => void) {
     let rest = new RestAPI();
     rest.craftedAbilities(logonToken, characterID).then(function (data: Object[]) {
       if (callback) {
