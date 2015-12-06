@@ -3,6 +3,10 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+
+//import * as Rest from '../util/RestAPI';
+import RestAPI from '../util/RestAPI';
+
 import AbilityComponent from './AbilityComponent';
 class Ability {
   id: string;
@@ -28,7 +32,22 @@ class Ability {
     this.tooltip = ability.tooltip || "";
     this.buttons = ability.buttons || [];
     this.awaitingUpdate = ability.awaitingUpdate || null;
-    this.abilityComponents = ability.abilityComponents ||  <AbilityComponent[]>[];
+    this.abilityComponents = ability.abilityComponents || <AbilityComponent[]>[];
+  }
+
+  private static ObjToAbil(obj: any, index: number) {
+    return new Ability(obj);
+  }
+
+  public static getAllAbilities(logonToken: string, characterID: string, callback: (info: any) => void) {
+    let rest = new RestAPI();
+    rest.craftedAbilities(logonToken, characterID).then(function (data: Object[]) {
+      if (callback) {
+        callback(data.map(Ability.ObjToAbil));
+      }
+    }, function (status: any, errorThrown: any) {
+      console.log('status: ' + status + ' reason:' + errorThrown);
+    });
   }
 
   static create() {
