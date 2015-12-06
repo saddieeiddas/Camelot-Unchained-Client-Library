@@ -70,7 +70,7 @@ export class Rest {
 		let url: string;
 
 		// construct request URL
-    url = this.makeUrl(verb, true);
+    url = this.makeUrl(verb, useHttps);
 
 		// add params
     if (params) {
