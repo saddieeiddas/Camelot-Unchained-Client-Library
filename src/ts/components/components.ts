@@ -4,6 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+// Unit Frame
 import UnitFrame from './unitframe/UnitFrame';
 
 import Effects from './unitframe/components/Effects';
@@ -21,6 +22,9 @@ import InjuryBar from './unitframe/components/InjuryBar';
 import InjuryText from './unitframe/components/InjuryText';
 import InjuryWounds from './unitframe/components/InjuryWounds';
 
+// Wound Frame
+import WoundFrame from './woundframe/WoundFrame';
+
 export default {
   UnitFrame,
   Effects,
@@ -35,5 +39,7 @@ export default {
   InjuryLocation,
   InjuryBar,
   InjuryText,
-  InjuryWounds
+  InjuryWounds,
+
+  WoundFrame,
 }

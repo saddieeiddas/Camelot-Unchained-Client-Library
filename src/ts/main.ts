@@ -4,6 +4,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+/// <reference path="../tsd/tsd.d.ts" />
+
 import CoreSettings from './CoreSettings';
 import clientInterface from './clientInterface';
 import client from './client';
@@ -22,18 +24,20 @@ import soundEvents from './constants/soundEvents';
 import tagConstraintType from './constants/tagConstraintType';
 import tags from './constants/tags';
 
-
 // classes
 import Ability from './classes/Ability';
 import Combatant from './classes/Combatant';
 import Player from './classes/Player';
 import Character from './classes/Character';
 import ControlGame from './classes/ControlGame';
+import Injury from './classes/Injury';
 import Population from './classes/Population';
 
 // modules
 import events from './events/events';
 import stores from './stores/stores';
+
+// components
 import components from './components/components';
 
 export {
@@ -54,17 +58,20 @@ export {
   soundEvents,
   tagConstraintType,
   tags,
-  
+
   // classes
   Ability,
   Combatant,
   Player,
   Character,
   ControlGame,
+  Injury,
   Population,
-  
+
   // modules
   events,
   stores,
+
+  // components
   components,
 }
