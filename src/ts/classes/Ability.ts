@@ -35,15 +35,11 @@ class Ability {
     this.abilityComponents = ability.abilityComponents || <AbilityComponent[]>[];
   }
 
-  private static ObjToAbil(obj: any, index: number) {
-    return new Ability(obj);
-  }
-
   public static getAllAbilities(logonToken: string, characterID: string, callback: (abilities: Ability[]) => void) {
     let rest = new RestAPI();
     rest.craftedAbilities(logonToken, characterID).then(function (data: Object[]) {
       if (callback) {
-        callback(data.map(Ability.ObjToAbil));
+        callback(data.map((o) => new Ability(<Ability>o)));
       }
     }, function (status: any, errorThrown: any) {
       console.log('status: ' + status + ' reason:' + errorThrown);
