@@ -45,12 +45,6 @@ class Ability {
       console.log('status: ' + status + ' reason:' + errorThrown);
     });
   }
-
-  static create() {
-    let a = new Ability();
-    return a;
-  }
-
 }
 
 export default Ability;
