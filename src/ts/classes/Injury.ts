@@ -9,6 +9,7 @@ class Injury {
   health: number;
   maxHealth: number;
   wounds: number;
+  empty: boolean; // placeholder
 
   constructor(injury = <Injury>{}) {
     this.refresh(injury);
@@ -16,9 +17,10 @@ class Injury {
 
   refresh(injury = <Injury>{}) {
     this.part = injury.part || 0;
-    this.health = injury.health || 25;
-    this.maxHealth = injury.maxHealth || 25;
+    this.health = injury.health || 0;
+    this.maxHealth = injury.maxHealth || 0;
     this.wounds = injury.wounds || 0;
+    this.empty = (this.maxHealth == 0);
   }
 
   static create() {
