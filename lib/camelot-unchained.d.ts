@@ -895,11 +895,6 @@ declare module '__camelot-unchained/constants/tags' {
 }
 
 declare module '__camelot-unchained/classes/Ability' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-      */
     import AbilityComponent from '__camelot-unchained/classes/AbilityComponent';
     class Ability {
         id: string;
@@ -915,7 +910,7 @@ declare module '__camelot-unchained/classes/Ability' {
             (a: Ability): any;
         }[];
         constructor(ability?: Ability);
-        static create(): Ability;
+        static getAllAbilities(logonToken: string, characterID: string, callback: (abilities: Ability[]) => void): void;
     }
     export default Ability;
 }

@@ -18,7 +18,8 @@ module.exports = {
   lib: {
     sass: true,
     sass_base: 'styles',
-    sass_dest: 'styles',
+    sass_dest: 'sass',
+    css_dest: 'css',
     copy: true,
   },
 };
