@@ -83,11 +83,12 @@ export class Doll extends React.Component<DollProps, DollState> {
     // Replace damaged body parts
     for (let i = 0; i < map.length; i++) {
       let injury = map.getInjury(i);
-      const part =  getPart(i);
+      const part =  injury.empty ? getPart(i) : getPart(injury.part);
       const maxHealth = (injury.maxHealth * 3);
       const currentHealth = injury.wounds < 3 ? ((2 - injury.wounds) * injury.maxHealth) + injury.health : 0;
       const state = getState(currentHealth, maxHealth);
       const color = injury.empty ? colors.getColorForWound(0) : colors.getColorForWound(injury.health == 0 ? injury.wounds + 1 : injury.wounds);
+
       parts.push(
         <Part key={'part.' + part}
           part={part}
