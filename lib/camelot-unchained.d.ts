@@ -1036,6 +1036,7 @@ declare module '__camelot-unchained/classes/Injury' {
         health: number;
         maxHealth: number;
         wounds: number;
+        empty: boolean;
         constructor(injury?: Injury);
         refresh(injury?: Injury): void;
         static create(): Injury;

@@ -21,6 +21,9 @@ export interface DollProps {
 }
 
 function getState(damage: number, max: number): number {
+  if (max == 0)
+    return 0;
+
   const pct: number = damage / max;
   if (pct > pct66) return 0;
   if (pct > pct33) return 1;
@@ -80,11 +83,12 @@ export class Doll extends React.Component<DollProps, DollState> {
     // Replace damaged body parts
     for (let i = 0; i < map.length; i++) {
       let injury = map.getInjury(i);
-      const part =  getPart(i);
+      const part =  injury.empty ? getPart(i) : getPart(injury.part);
       const maxHealth = (injury.maxHealth * 3);
       const currentHealth = injury.wounds < 3 ? ((2 - injury.wounds) * injury.maxHealth) + injury.health : 0;
       const state = getState(currentHealth, maxHealth);
-      const color = colors.getColorForWound(injury.health == 0 ? injury.wounds + 1 : injury.wounds);
+      const color = injury.empty ? colors.getColorForWound(0) : colors.getColorForWound(injury.health == 0 ? injury.wounds + 1 : injury.wounds);
+
       parts.push(
         <Part key={'part.' + part}
           part={part}
@@ -95,14 +99,17 @@ export class Doll extends React.Component<DollProps, DollState> {
           color={color}
           />
       );
-      labels.push(
-        <Label key={'part.' + part}
-          part={part}
-          value={currentHealth}
-          max={maxHealth}
-          color={color}
-          />
-      );
+
+      if (!injury.empty) {
+        labels.push(
+          <Label key={'part.' + part}
+            part={part}
+            value={currentHealth}
+            max={maxHealth}
+            color={color}
+            />
+        );
+      }
     }
 
     return (
