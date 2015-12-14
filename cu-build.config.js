@@ -12,14 +12,14 @@ module.exports = {
   name: name,
   bundle: {
     base: 'js',
-    sass_base: 'styles',
-    sass_dest: 'styles',
+    sass_base: '',
+    sass_dest: '',
   },
   lib: {
     sass: true,
-    sass_base: 'styles',
-    sass_dest: 'sass',
-    css_dest: 'css',
+    sass_base: '',
+    sass_dest: '',
+    css_dest: '',
     copy: true,
   },
 };
