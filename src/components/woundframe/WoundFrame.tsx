@@ -5,12 +5,14 @@
  */
 
 import * as React from 'react';
+import DisplayName from './components/DisplayName';
 import Doll from './components/Doll';
 import Stats from './components/Stats';
 import Buffs from './components/Buffs';
 import WoundColors from './classes/WoundColors';
 
 export class WoundsProps {
+  name: string;
   injuries: any[];
   health: number;
   healthMax: number;
@@ -31,6 +33,7 @@ class WoundFrame extends React.Component<WoundsProps, WoundsState> {
   render() {
     return (
       <div>
+        <DisplayName name={this.props.name} />
         <Doll injuries={this.props.injuries} />
         <Buffs type="boon"/>
         <Buffs type="bane"/>

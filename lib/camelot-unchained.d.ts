@@ -1266,6 +1266,7 @@ declare module '__camelot-unchained/components/woundframe/WoundFrame' {
       */
     import * as React from 'react';
     export class WoundsProps {
+        name: string;
         injuries: any[];
         health: number;
         healthMax: number;

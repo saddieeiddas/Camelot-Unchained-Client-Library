@@ -20,8 +20,21 @@
   width: 150px;
   background-color: $rgba;
   border: 1px solid rgba(255,255,255,0.6);
-  padding: 10px;
-  padding-bottom: 5px;
+  padding: 5px 10px 5px 10px;
+  
+  /* Name Label Style */
+  .name {
+    display: block;
+    opacity: 0.85;
+    .label {
+      text-align: center;
+      display: block;
+      width: 100%;
+      font-size: 10px;
+      height: 10px;
+      font-weight: bold;
+    }
+  }
 
   /* Paper Doll Styles */
   .doll {
