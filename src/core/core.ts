@@ -21,6 +21,8 @@ import race from './constants/race';
 import soundEvents from './constants/soundEvents';
 import tagConstraintType from './constants/tagConstraintType';
 import tags from './constants/tags';
+import itemType from './constants/itemType';
+import gearSlot from './constants/gearSlot';
 
 // classes
 import Ability from './classes/Ability';
@@ -30,13 +32,16 @@ import Character from './classes/Character';
 import ControlGame from './classes/ControlGame';
 import Injury from './classes/Injury';
 import Population from './classes/Population';
+import Inventory from './classes/Inventory';
+import Item from './classes/Item';
 
 export {
+  // core
   CoreSettings,
   clientInterface,
   client,
 
-  // constants
+  // core constants
   abilityTags,
   archetype,
   buildUIMode,
@@ -49,8 +54,10 @@ export {
   soundEvents,
   tagConstraintType,
   tags,
+  itemType,
+  gearSlot,
 
-  // classes
+  // core classes
   Ability,
   Combatant,
   Player,
@@ -58,4 +65,6 @@ export {
   ControlGame,
   Injury,
   Population,
+  Inventory,
+  Item,
 }
