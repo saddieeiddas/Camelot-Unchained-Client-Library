@@ -14,6 +14,7 @@ import HandlesFriendlyTarget from './classes/HandlesFriendlyTarget';
 import HandlesControlGame from './classes/HandlesControlGame';
 import HandlesControlGameScore from './classes/HandlesControlGameScore';
 import HandlesInventory from './classes/HandlesInventory';
+import HandlesEquippedGear from './classes/HandlesEquippedGear';
 
 import InitListener from './listeners/Init';
 import AnnouncementsListener from './listeners/Announcements';
@@ -24,6 +25,7 @@ import FriendlyTargetListener from './listeners/FriendlyTarget';
 import ControlGameListener from './listeners/ControlGame';
 import ControlGameScoreListener from './listeners/ControlGameScore';
 import InventoryListener from './listeners/Inventory';
+import EquippedGearListener from './listeners/EquippedGear';
 
 // Handle* objects.  These define both the event name, and the Reflux action used
 // to trigger the stores (TODO: This latter part is not working)
@@ -35,6 +37,7 @@ const handlesFriendlyTarget: HandlesFriendlyTarget = new HandlesFriendlyTarget()
 const handlesControlGame: HandlesControlGame = new HandlesControlGame();
 const handlesControlGameScore: HandlesControlGameScore = new HandlesControlGameScore();
 const handlesInventory: HandlesInventory = new HandlesInventory();
+const handlesEquippedGear: HandlesEquippedGear = new HandlesEquippedGear();
 
 // Listeners
 const listeners: any = {
@@ -46,7 +49,8 @@ const listeners: any = {
   [handlesFriendlyTarget.topic]: new FriendlyTargetListener(handlesFriendlyTarget),
   [handlesControlGame.topic]: new ControlGameListener(handlesControlGame),
   [handlesControlGameScore.topic]: new ControlGameScoreListener(handlesControlGameScore),
-  [handlesInventory.topic]: new InventoryListener(handlesInventory)
+  [handlesInventory.topic]: new InventoryListener(handlesInventory),
+  [handlesEquippedGear.topic]: new EquippedGearListener(handlesEquippedGear)
 };
 
 // Event Emitter.  A single instance of event emitter handles all cu-events events
@@ -86,6 +90,7 @@ export default {
   handlesControlGame,
   handlesControlGameScore,
   handlesInventory,
+  handlesEquippedGear,
   on,
   off,
   addListener,

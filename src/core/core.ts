@@ -34,6 +34,7 @@ import Injury from './classes/Injury';
 import Population from './classes/Population';
 import Inventory from './classes/Inventory';
 import Item from './classes/Item';
+import EquippedGear from './classes/EquippedGear';
 
 export {
   // core
@@ -67,4 +68,5 @@ export {
   Population,
   Inventory,
   Item,
+  EquippedGear,
 }

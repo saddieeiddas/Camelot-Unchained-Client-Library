@@ -34,10 +34,11 @@ declare module 'camelot-unchained' {
     import Population from '__camelot-unchained/core/classes/Population';
     import Inventory from '__camelot-unchained/core/classes/Inventory';
     import Item from '__camelot-unchained/core/classes/Item';
+    import EquippedGear from '__camelot-unchained/core/classes/EquippedGear';
     import events from '__camelot-unchained/events/events';
     import stores from '__camelot-unchained/stores/stores';
     import components from '__camelot-unchained/components/components';
-    export { CoreSettings, clientInterface, client, abilityTags, archetype, buildUIMode, channelId, dxKeyCodes, emotes, jsKeyCodes, jsToDXKeyCodeMap, race, soundEvents, tagConstraintType, tags, itemType, gearSlot, Ability, Combatant, Player, Character, ControlGame, Injury, Population, Inventory, Item, events, stores, components };
+    export { CoreSettings, clientInterface, client, abilityTags, archetype, buildUIMode, channelId, dxKeyCodes, emotes, jsKeyCodes, jsToDXKeyCodeMap, race, soundEvents, tagConstraintType, tags, itemType, gearSlot, Ability, Combatant, Player, Character, ControlGame, Injury, Population, Inventory, Item, EquippedGear, events, stores, components };
 }
 
 declare module '__camelot-unchained/core/CoreSettings' {
@@ -1023,7 +1024,7 @@ declare module '__camelot-unchained/core/classes/Character' {
       */
     import Player from '__camelot-unchained/core/classes/Player';
     import Inventory from '__camelot-unchained/core/classes/Inventory';
-    import EquippedItems from '__camelot-unchained/core/classes/EquippedItems';
+    import EquippedGear from '__camelot-unchained/core/classes/EquippedGear';
     import BaneBoon from '__camelot-unchained/core/classes/BaneBoon';
     import SpellBook from '__camelot-unchained/core/classes/SpellBook';
     import Group from '__camelot-unchained/core/classes/Group';
@@ -1032,7 +1033,7 @@ declare module '__camelot-unchained/core/classes/Character' {
         inventory: Inventory;
         banes: BaneBoon[];
         boons: BaneBoon[];
-        equippedItems: EquippedItems;
+        equippedGear: EquippedGear;
         spellBook: SpellBook;
         group: Group;
         stats: Stats;
@@ -1208,6 +1209,61 @@ declare module '__camelot-unchained/core/classes/Item' {
     export default Item;
 }
 
+declare module '__camelot-unchained/core/classes/EquippedGear' {
+    /**
+        * This Source Code Form is subject to the terms of the Mozilla Public
+        * License, v. 2.0. If a copy of the MPL was not distributed with this
+        * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+        */
+    import Item from '__camelot-unchained/core/classes/Item';
+    import gearSlot from '__camelot-unchained/core/constants/gearSlot';
+    /**
+        * EquippedGear
+        */
+    class EquippedGear {
+            /**
+                * The items currently in the equippedgear
+                * @type {Item[]}
+                */
+            items: Item[];
+            constructor(equippedgear?: EquippedGear);
+            /**
+                * Get the item in specific gear slot
+                * @param  {gearSlot} slot - the gear slot to get item for
+                * @return {Item} the item in gear slot, or null if there is no item equipped
+                */
+            getItemInGearSlot(slot: gearSlot | string): Item;
+            /**
+                * Check if the equippedgear contains an item
+                * @param  {string} id - the id of item to look for
+                * @return {boolean} returns true if the item existing in the equippedgear
+                */
+            hasItem(id: string): boolean;
+            /**
+                * Removes an item from given gear slot
+                * @param {gearSlot} slot the gear slot to remove item from
+                */
+            removeItemInGearSlot(slot: gearSlot): void;
+            /**
+                * Adds an item to the equippedgear
+                * @param {Item} item - the item to add to equippedgear
+                */
+            addItem(item: Item): void;
+            /**
+                * Removes an item from the equippedgear with the given item id
+                * @param {string} id - the item id to remove
+                */
+            removeItem(id: string): void;
+            /**
+                * Get a list of all item ID's currently in the equippedgear
+                * @return {string[]} an array of item ID's
+                */
+            getItemIDs(): string[];
+            static create(): EquippedGear;
+    }
+    export default EquippedGear;
+}
+
 declare module '__camelot-unchained/events/events' {
     import HandlesAnnouncements from '__camelot-unchained/events/classes/HandlesAnnouncements';
     import HandlesChat from '__camelot-unchained/events/classes/HandlesChat';
@@ -1217,6 +1273,7 @@ declare module '__camelot-unchained/events/events' {
     import HandlesControlGame from '__camelot-unchained/events/classes/HandlesControlGame';
     import HandlesControlGameScore from '__camelot-unchained/events/classes/HandlesControlGameScore';
     import HandlesInventory from '__camelot-unchained/events/classes/HandlesInventory';
+    import HandlesEquippedGear from '__camelot-unchained/events/classes/HandlesEquippedGear';
     var _default: {
         handlesAnnouncements: HandlesAnnouncements;
         handlesChat: HandlesChat;
@@ -1226,6 +1283,7 @@ declare module '__camelot-unchained/events/events' {
         handlesControlGame: HandlesControlGame;
         handlesControlGameScore: HandlesControlGameScore;
         handlesInventory: HandlesInventory;
+        handlesEquippedGear: HandlesEquippedGear;
         on: (topic: string, callback: (info: any) => void) => any;
         off: (listener: any) => void;
         addListener: (topic: string, callback: (info: any) => void) => void;
@@ -1350,28 +1408,6 @@ declare module '__camelot-unchained/core/classes/AbilityComponent' {
         static create(): AbilityComponent;
     }
     export default AbilityComponent;
-}
-
-declare module '__camelot-unchained/core/classes/EquippedItems' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-      */
-    import Item from '__camelot-unchained/core/classes/Item';
-    class EquippedItems {
-        helmet: Item;
-        chest: Item;
-        pants: Item;
-        boots: Item;
-        leftHand: Item;
-        rightHand: Item;
-        leftGlove: Item;
-        rightGlove: Item;
-        constructor(equippeditems?: EquippedItems);
-        static create(): EquippedItems;
-    }
-    export default EquippedItems;
 }
 
 declare module '__camelot-unchained/core/classes/BaneBoon' {
@@ -1553,6 +1589,17 @@ declare module '__camelot-unchained/events/classes/HandlesInventory' {
       * file, You can obtain one at http://mozilla.org/MPL/2.0/.
       */
     export default class HandlesInventory {
+        topic: string;
+    }
+}
+
+declare module '__camelot-unchained/events/classes/HandlesEquippedGear' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    export default class HandlesEquippedGear {
         topic: string;
     }
 }

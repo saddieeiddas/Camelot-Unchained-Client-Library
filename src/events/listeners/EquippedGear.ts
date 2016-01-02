@@ -5,58 +5,59 @@
  */
 
 import EventEmitter from '../classes/EventEmitter';
-import HandlesInventory from '../classes/HandlesInventory';
+import HandlesEquippedGear from '../classes/HandlesEquippedGear';
 import client from '../../core/client';
-import Inventory from '../../core/classes/Inventory';
+import EquippedGear from '../../core/classes/EquippedGear';
 import Item from '../../core/classes/Item';
 
 function run(emitter: EventEmitter, topic: string) {
-  const inventory = new Inventory();
+  const equippedgear = new EquippedGear();
   const queue: string[] = [];
   client.OnItemEquipped((id: string) => {
-    inventory.removeItem(id);
-  });
-  client.OnItemUnequipped((id: string) => {
     queue.push(id);
     client.GetItem(id);
   });
-  client.OnInventoryItemIDsChanged((ids: string[]) => {
-    const existingItemIDs = inventory.getItemIDs();
+  client.OnItemUnequipped((id: string) => {
+    equippedgear.removeItem(id);
+    emitter.emit(topic, equippedgear);
+  });
+  client.OnEquippedGearItemIDsChanged((ids: string[]) => {
+    const existingItemIDs = equippedgear.getItemIDs();
     ids.forEach((id: string) => {
-      if (inventory.hasItem(id)) {
+      if (equippedgear.hasItem(id)) {
         existingItemIDs.splice(existingItemIDs.indexOf(id), 1);
       } else {
         queue.push(id);
       }
     });
     existingItemIDs.forEach((id: string) => {
-      inventory.removeItem(id);
+      equippedgear.removeItem(id);
     });
     if (queue.length > 0) {
       queue.forEach((id: string) => {
         client.GetItem(id);
       });
     } else {
-      emitter.emit(topic, inventory);
+      emitter.emit(topic, equippedgear);
     }
   });
   client.OnGetItem((item: any) => {
     item.id = item.itemID;
     if (queue.indexOf(item.id) >= 0) {
       queue.splice(queue.indexOf(item.id), 1);
-      inventory.addItem(new Item(item));
+      equippedgear.addItem(new Item(item));
       if (queue.length === 0) {
-        emitter.emit(topic, inventory);
+        emitter.emit(topic, equippedgear);
       }
     }
   });
 }
 
-export default class InventoryListener {
+export default class EquippedGearListener {
   listening: boolean = false;
   type: string;
-  handles: HandlesInventory;
-  constructor(handles: HandlesInventory) {
+  handles: HandlesEquippedGear;
+  constructor(handles: HandlesEquippedGear) {
     this.handles = handles;
   }
   start(emitter: EventEmitter): void {

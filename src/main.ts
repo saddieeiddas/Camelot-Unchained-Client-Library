@@ -37,6 +37,7 @@ import Injury from './core/classes/Injury';
 import Population from './core/classes/Population';
 import Inventory from './core/classes/Inventory';
 import Item from './core/classes/Item';
+import EquippedGear from './core/classes/EquippedGear';
 
 // libraries
 import events from './events/events';
@@ -76,6 +77,7 @@ export {
   Population,
   Inventory,
   Item,
+  EquippedGear,
 
   // libraries
   events,
