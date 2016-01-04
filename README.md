@@ -6,6 +6,10 @@ camelot-unchained
 ---
 *Notice: This library is under heavy development and is not guaranteed to be in a working state as this time.  This notice will be removed when the library is stable.*
 
+##### [Documentation / Wiki](https://github.com/csegames/Camelot-Unchained-Client-Library/wiki)
+
+---
+
 Installation
 ------------
 
