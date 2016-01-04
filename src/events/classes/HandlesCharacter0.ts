@@ -4,11 +4,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-@import "includes";
-@import "reset/reset";
-@import "misc/misc";
-@import "typography/typography";
-@import "color/color";
-@import "window/window";
-@import "form/form";
-@import "tooltip/tooltip";
+export default class HandlesCharacter {
+  topic: string = 'character';
+}

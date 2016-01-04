@@ -8,152 +8,37 @@ declare module 'camelot-unchained' {
       * License, v. 2.0. If a copy of the MPL was not distributed with this
       * file, You can obtain one at http://mozilla.org/MPL/2.0/.
       */
-    import * as core from '__camelot-unchained/core/core';
+    import CoreSettings from '__camelot-unchained/core/CoreSettings';
+    import clientInterface from '__camelot-unchained/core/clientInterface';
+    import client from '__camelot-unchained/core/client';
+    import abilityTags from '__camelot-unchained/core/constants/abilityConstants/abilityTags';
+    import archetype from '__camelot-unchained/core/constants/archetype';
+    import buildUIMode from '__camelot-unchained/core/constants/buildUIMode';
+    import channelId from '__camelot-unchained/core/constants/channelId';
+    import dxKeyCodes from '__camelot-unchained/core/constants/dxKeyCodes';
+    import emotes from '__camelot-unchained/core/constants/emotes';
+    import jsKeyCodes from '__camelot-unchained/core/constants/jsKeyCodes';
+    import jsToDXKeyCodeMap from '__camelot-unchained/core/constants/jsToDXKeyCodeMap';
+    import race from '__camelot-unchained/core/constants/race';
+    import soundEvents from '__camelot-unchained/core/constants/soundEvents';
+    import tagConstraintType from '__camelot-unchained/core/constants/tagConstraintType';
+    import tags from '__camelot-unchained/core/constants/tags';
+    import itemType from '__camelot-unchained/core/constants/itemType';
+    import gearSlot from '__camelot-unchained/core/constants/gearSlot';
+    import Ability from '__camelot-unchained/core/classes/Ability';
+    import Combatant from '__camelot-unchained/core/classes/Combatant';
+    import Player from '__camelot-unchained/core/classes/Player';
+    import Character from '__camelot-unchained/core/classes/Character';
+    import ControlGame from '__camelot-unchained/core/classes/ControlGame';
+    import Injury from '__camelot-unchained/core/classes/Injury';
+    import Population from '__camelot-unchained/core/classes/Population';
+    import Inventory from '__camelot-unchained/core/classes/Inventory';
+    import Item from '__camelot-unchained/core/classes/Item';
+    import EquippedGear from '__camelot-unchained/core/classes/EquippedGear';
     import events from '__camelot-unchained/events/events';
     import stores from '__camelot-unchained/stores/stores';
     import components from '__camelot-unchained/components/components';
-    import CoreSettings from '__camelot-unchained/core/CoreSettings';
-    import clientInterface from '__camelot-unchained/core/clientInterface';
-    import client from '__camelot-unchained/core/client';
-    import abilityTags from '__camelot-unchained/core/constants/abilityConstants/abilityTags';
-    import archetype from '__camelot-unchained/core/constants/archetype';
-    import buildUIMode from '__camelot-unchained/core/constants/buildUIMode';
-    import channelId from '__camelot-unchained/core/constants/channelId';
-    import dxKeyCodes from '__camelot-unchained/core/constants/dxKeyCodes';
-    import emotes from '__camelot-unchained/core/constants/emotes';
-    import jsKeyCodes from '__camelot-unchained/core/constants/jsKeyCodes';
-    import jsToDXKeyCodeMap from '__camelot-unchained/core/constants/jsToDXKeyCodeMap';
-    import race from '__camelot-unchained/core/constants/race';
-    import soundEvents from '__camelot-unchained/core/constants/soundEvents';
-    import tagConstraintType from '__camelot-unchained/core/constants/tagConstraintType';
-    import tags from '__camelot-unchained/core/constants/tags';
-    import Ability from '__camelot-unchained/core/classes/Ability';
-    import Combatant from '__camelot-unchained/core/classes/Combatant';
-    import Player from '__camelot-unchained/core/classes/Player';
-    import Character from '__camelot-unchained/core/classes/Character';
-    import ControlGame from '__camelot-unchained/core/classes/ControlGame';
-    import Injury from '__camelot-unchained/core/classes/Injury';
-    import Population from '__camelot-unchained/core/classes/Population';
-    export { core, events, stores, components, CoreSettings, clientInterface, client, abilityTags, archetype, buildUIMode, channelId, dxKeyCodes, emotes, jsKeyCodes, jsToDXKeyCodeMap, race, soundEvents, tagConstraintType, tags, Ability, Combatant, Player, Character, ControlGame, Injury, Population };
-}
-
-declare module '__camelot-unchained/core/core' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-      */
-    import CoreSettings from '__camelot-unchained/core/CoreSettings';
-    import clientInterface from '__camelot-unchained/core/clientInterface';
-    import client from '__camelot-unchained/core/client';
-    import abilityTags from '__camelot-unchained/core/constants/abilityConstants/abilityTags';
-    import archetype from '__camelot-unchained/core/constants/archetype';
-    import buildUIMode from '__camelot-unchained/core/constants/buildUIMode';
-    import channelId from '__camelot-unchained/core/constants/channelId';
-    import dxKeyCodes from '__camelot-unchained/core/constants/dxKeyCodes';
-    import emotes from '__camelot-unchained/core/constants/emotes';
-    import jsKeyCodes from '__camelot-unchained/core/constants/jsKeyCodes';
-    import jsToDXKeyCodeMap from '__camelot-unchained/core/constants/jsToDXKeyCodeMap';
-    import race from '__camelot-unchained/core/constants/race';
-    import soundEvents from '__camelot-unchained/core/constants/soundEvents';
-    import tagConstraintType from '__camelot-unchained/core/constants/tagConstraintType';
-    import tags from '__camelot-unchained/core/constants/tags';
-    import Ability from '__camelot-unchained/core/classes/Ability';
-    import Combatant from '__camelot-unchained/core/classes/Combatant';
-    import Player from '__camelot-unchained/core/classes/Player';
-    import Character from '__camelot-unchained/core/classes/Character';
-    import ControlGame from '__camelot-unchained/core/classes/ControlGame';
-    import Injury from '__camelot-unchained/core/classes/Injury';
-    import Population from '__camelot-unchained/core/classes/Population';
-    export { CoreSettings, clientInterface, client, abilityTags, archetype, buildUIMode, channelId, dxKeyCodes, emotes, jsKeyCodes, jsToDXKeyCodeMap, race, soundEvents, tagConstraintType, tags, Ability, Combatant, Player, Character, ControlGame, Injury, Population };
-}
-
-declare module '__camelot-unchained/events/events' {
-    import HandlesAnnouncements from '__camelot-unchained/events/classes/HandlesAnnouncements';
-    import HandlesChat from '__camelot-unchained/events/classes/HandlesChat';
-    import HandlesCharacter from '__camelot-unchained/events/classes/HandlesCharacter';
-    import HandlesEnemyTarget from '__camelot-unchained/events/classes/HandlesEnemyTarget';
-    import HandlesFriendlyTarget from '__camelot-unchained/events/classes/HandlesFriendlyTarget';
-    import HandlesControlGame from '__camelot-unchained/events/classes/HandlesControlGame';
-    import HandlesControlGameScore from '__camelot-unchained/events/classes/HandlesControlGameScore';
-    var _default: {
-        handlesAnnouncements: HandlesAnnouncements;
-        handlesChat: HandlesChat;
-        handlesCharacter: HandlesCharacter;
-        handlesEnemyTarget: HandlesEnemyTarget;
-        handlesFriendlyTarget: HandlesFriendlyTarget;
-        handlesControlGame: HandlesControlGame;
-        handlesControlGameScore: HandlesControlGameScore;
-        on: (topic: string, callback: (info: any) => void) => any;
-        off: (listener: any) => void;
-        addListener: (topic: string, callback: (info: any) => void) => void;
-        removeListener: (listener: any) => void;
-    };
-    export default _default;
-}
-
-declare module '__camelot-unchained/stores/stores' {
-    var _default: {
-        AnnouncementsStore: {
-            create(): {
-                store: any;
-                actions: {};
-            };
-        };
-        CharacterStore: {
-            create(): {
-                store: any;
-                actions: {};
-            };
-        };
-        EnemyTargetStore: {
-            create(): {
-                store: any;
-                actions: {};
-            };
-        };
-        FriendlyTargetStore: {
-            create(): {
-                store: any;
-                actions: {};
-            };
-        };
-        ControlGameStore: {
-            create(): {
-                store: any;
-                actions: {};
-            };
-        };
-        ControlGameScoreStore: {
-            create(): {
-                store: any;
-                actions: {};
-            };
-        };
-    };
-    export default _default;
-}
-
-declare module '__camelot-unchained/components/components' {
-    import WoundFrame from '__camelot-unchained/components/woundframe/WoundFrame';
-    var _default: {
-        UnitFrame: __React.ClassicComponentClass<any>;
-        Effects: __React.ClassicComponentClass<any>;
-        HealthBar: __React.ClassicComponentClass<any>;
-        HealthText: __React.ClassicComponentClass<any>;
-        Name: __React.ClassicComponentClass<any>;
-        Portrait: __React.ClassicComponentClass<any>;
-        StaminaBar: __React.ClassicComponentClass<any>;
-        StaminaText: __React.ClassicComponentClass<any>;
-        Injuries: __React.ClassicComponentClass<any>;
-        Injury: __React.ClassicComponentClass<any>;
-        InjuryLocation: __React.ClassicComponentClass<any>;
-        InjuryBar: __React.ClassicComponentClass<any>;
-        InjuryText: __React.ClassicComponentClass<any>;
-        InjuryWounds: __React.ClassicComponentClass<any>;
-        WoundFrame: typeof WoundFrame;
-    };
-    export default _default;
+    export { CoreSettings, clientInterface, client, abilityTags, archetype, buildUIMode, channelId, dxKeyCodes, emotes, jsKeyCodes, jsToDXKeyCodeMap, race, soundEvents, tagConstraintType, tags, itemType, gearSlot, Ability, Combatant, Player, Character, ControlGame, Injury, Population, Inventory, Item, EquippedGear, events, stores, components };
 }
 
 declare module '__camelot-unchained/core/CoreSettings' {
@@ -1014,6 +899,45 @@ declare module '__camelot-unchained/core/constants/tags' {
     export default tags;
 }
 
+declare module '__camelot-unchained/core/constants/itemType' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    enum itemType {
+        NONE = 0,
+        EQUIPABLE = 1,
+        RESOURCE = 2,
+    }
+    export default itemType;
+}
+
+declare module '__camelot-unchained/core/constants/gearSlot' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    enum gearSlot {
+        NONE = 0,
+        CHEST = 1,
+        LEFT_HAND = 2,
+        RIGHT_HAND = 4,
+        TWO_HANDED = 6,
+        PANTS = 8,
+        BOOTS = 16,
+        LEFT_GLOVE = 32,
+        RIGHT_GLOVE = 64,
+        HELMET = 128,
+        BELT = 256,
+        SKIRT = 512,
+        TABARD = 1024,
+        CAPE = 2048,
+    }
+    export default gearSlot;
+}
+
 declare module '__camelot-unchained/core/classes/Ability' {
     import AbilityComponent from '__camelot-unchained/core/classes/AbilityComponent';
     class Ability {
@@ -1100,7 +1024,7 @@ declare module '__camelot-unchained/core/classes/Character' {
       */
     import Player from '__camelot-unchained/core/classes/Player';
     import Inventory from '__camelot-unchained/core/classes/Inventory';
-    import EquippedItems from '__camelot-unchained/core/classes/EquippedItems';
+    import EquippedGear from '__camelot-unchained/core/classes/EquippedGear';
     import BaneBoon from '__camelot-unchained/core/classes/BaneBoon';
     import SpellBook from '__camelot-unchained/core/classes/SpellBook';
     import Group from '__camelot-unchained/core/classes/Group';
@@ -1109,7 +1033,7 @@ declare module '__camelot-unchained/core/classes/Character' {
         inventory: Inventory;
         banes: BaneBoon[];
         boons: BaneBoon[];
-        equippedItems: EquippedItems;
+        equippedGear: EquippedGear;
         spellBook: SpellBook;
         group: Group;
         stats: Stats;
@@ -1181,109 +1105,255 @@ declare module '__camelot-unchained/core/classes/Population' {
     export default Population;
 }
 
-declare module '__camelot-unchained/events/classes/HandlesAnnouncements' {
+declare module '__camelot-unchained/core/classes/Inventory' {
     /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-      */
-    export default class HandlesAnnouncements {
-        topic: string;
+        * This Source Code Form is subject to the terms of the Mozilla Public
+        * License, v. 2.0. If a copy of the MPL was not distributed with this
+        * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+        */
+    import Item from '__camelot-unchained/core/classes/Item';
+    /**
+        * Inventory
+        */
+    class Inventory {
+            /**
+                * The items currently in the inventory
+                * @type {Item[]}
+                */
+            items: Item[];
+            /**
+                * Inventory Constructor
+                * @param  {Inventory = <Inventory>{}} inventory - provide an existing inventory to copy all items into new inventory
+                */
+            constructor(inventory?: Inventory);
+            /**
+                * Check if the inventory contains an item
+                * @param  {string} id - the id of item to look for
+                * @return {boolean} returns true if the item existing in the inventory
+                */
+            hasItem(id: string): boolean;
+            /**
+                * Adds an item to the inventory
+                * @param {Item} item - the item to add to inventory
+                */
+            addItem(item: Item): void;
+            /**
+                * Removes an item from the inventory with the given item id
+                * @param {string} id - the item id to remove
+                */
+            removeItem(id: string): void;
+            /**
+                * Get a list of all item ID's currently in the inventory
+                * @return {string[]} an array of item ID's
+                */
+            getItemIDs(): string[];
+            static create(): Inventory;
     }
+    export default Inventory;
 }
 
-declare module '__camelot-unchained/events/classes/HandlesChat' {
+declare module '__camelot-unchained/core/classes/Item' {
     /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-      */
-    export default class HandlesChat {
-        topic: string;
+        * This Source Code Form is subject to the terms of the Mozilla Public
+        * License, v. 2.0. If a copy of the MPL was not distributed with this
+        * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+        */
+    import itemType from '__camelot-unchained/core/constants/itemType';
+    import gearSlot from '__camelot-unchained/core/constants/gearSlot';
+    /**
+        * Item
+        */
+    class Item {
+            /**
+                * The item ID
+                * @type {string}
+                */
+            id: string;
+            /**
+                * The item Type
+                * @type {itemType}
+                */
+            type: itemType;
+            /**
+                * The Item Name
+                * @type {string}
+                */
+            name: string;
+            /**
+                * The Item Description
+                * @type {string}
+                */
+            description: string;
+            /**
+                * The Item Resource ID
+                * @type {number}
+                */
+            resourceID: number;
+            /**
+                * The Item carryingRequirement
+                * @type {any}
+                */
+            carryingRequirement: any;
+            /**
+                * The Item gearSlot
+                * @type {gearSlot}
+                */
+            gearSlot: gearSlot;
+            /**
+                * Item Constructor
+                * @param  {Item = <Item>{}} item - an existing item to create this new item from
+                */
+            constructor(item?: Item);
+            static create(): Item;
     }
+    export default Item;
 }
 
-declare module '__camelot-unchained/events/classes/HandlesCharacter' {
+declare module '__camelot-unchained/core/classes/EquippedGear' {
     /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-      */
-    export default class HandlesCharacter {
-        topic: string;
+        * This Source Code Form is subject to the terms of the Mozilla Public
+        * License, v. 2.0. If a copy of the MPL was not distributed with this
+        * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+        */
+    import Item from '__camelot-unchained/core/classes/Item';
+    import gearSlot from '__camelot-unchained/core/constants/gearSlot';
+    /**
+        * EquippedGear
+        */
+    class EquippedGear {
+            /**
+                * The items currently in the equippedgear
+                * @type {Item[]}
+                */
+            items: Item[];
+            constructor(equippedgear?: EquippedGear);
+            /**
+                * Get the item in specific gear slot
+                * @param  {gearSlot} slot - the gear slot to get item for
+                * @return {Item} the item in gear slot, or null if there is no item equipped
+                */
+            getItemInGearSlot(slot: gearSlot | string): Item;
+            /**
+                * Check if the equippedgear contains an item
+                * @param  {string} id - the id of item to look for
+                * @return {boolean} returns true if the item existing in the equippedgear
+                */
+            hasItem(id: string): boolean;
+            /**
+                * Removes an item from given gear slot
+                * @param {gearSlot} slot the gear slot to remove item from
+                */
+            removeItemInGearSlot(slot: gearSlot): void;
+            /**
+                * Adds an item to the equippedgear
+                * @param {Item} item - the item to add to equippedgear
+                */
+            addItem(item: Item): void;
+            /**
+                * Removes an item from the equippedgear with the given item id
+                * @param {string} id - the item id to remove
+                */
+            removeItem(id: string): void;
+            /**
+                * Get a list of all item ID's currently in the equippedgear
+                * @return {string[]} an array of item ID's
+                */
+            getItemIDs(): string[];
+            static create(): EquippedGear;
     }
+    export default EquippedGear;
 }
 
-declare module '__camelot-unchained/events/classes/HandlesEnemyTarget' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-      */
-    export default class HandlesEnemyTarget {
-        topic: string;
-    }
+declare module '__camelot-unchained/events/events' {
+    import HandlesAnnouncements from '__camelot-unchained/events/classes/HandlesAnnouncements';
+    import HandlesChat from '__camelot-unchained/events/classes/HandlesChat';
+    import HandlesCharacter from '__camelot-unchained/events/classes/HandlesCharacter';
+    import HandlesEnemyTarget from '__camelot-unchained/events/classes/HandlesEnemyTarget';
+    import HandlesFriendlyTarget from '__camelot-unchained/events/classes/HandlesFriendlyTarget';
+    import HandlesControlGame from '__camelot-unchained/events/classes/HandlesControlGame';
+    import HandlesControlGameScore from '__camelot-unchained/events/classes/HandlesControlGameScore';
+    import HandlesInventory from '__camelot-unchained/events/classes/HandlesInventory';
+    import HandlesEquippedGear from '__camelot-unchained/events/classes/HandlesEquippedGear';
+    var _default: {
+        handlesAnnouncements: HandlesAnnouncements;
+        handlesChat: HandlesChat;
+        handlesCharacter: HandlesCharacter;
+        handlesEnemyTarget: HandlesEnemyTarget;
+        handlesFriendlyTarget: HandlesFriendlyTarget;
+        handlesControlGame: HandlesControlGame;
+        handlesControlGameScore: HandlesControlGameScore;
+        handlesInventory: HandlesInventory;
+        handlesEquippedGear: HandlesEquippedGear;
+        on: (topic: string, callback: (info: any) => void) => any;
+        off: (listener: any) => void;
+        addListener: (topic: string, callback: (info: any) => void) => void;
+        removeListener: (listener: any) => void;
+    };
+    export default _default;
 }
 
-declare module '__camelot-unchained/events/classes/HandlesFriendlyTarget' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-      */
-    export default class HandlesFriendlyTarget {
-        topic: string;
-    }
+declare module '__camelot-unchained/stores/stores' {
+    var _default: {
+        AnnouncementsStore: {
+            create(): {
+                store: any;
+                actions: {};
+            };
+        };
+        CharacterStore: {
+            create(): {
+                store: any;
+                actions: {};
+            };
+        };
+        EnemyTargetStore: {
+            create(): {
+                store: any;
+                actions: {};
+            };
+        };
+        FriendlyTargetStore: {
+            create(): {
+                store: any;
+                actions: {};
+            };
+        };
+        ControlGameStore: {
+            create(): {
+                store: any;
+                actions: {};
+            };
+        };
+        ControlGameScoreStore: {
+            create(): {
+                store: any;
+                actions: {};
+            };
+        };
+    };
+    export default _default;
 }
 
-declare module '__camelot-unchained/events/classes/HandlesControlGame' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-      */
-    export default class HandlesControlGame {
-        topic: string;
-    }
-}
-
-declare module '__camelot-unchained/events/classes/HandlesControlGameScore' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-      */
-    export default class HandlesControlGameScore {
-        topic: string;
-    }
-}
-
-declare module '__camelot-unchained/components/woundframe/WoundFrame' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-      */
-    import * as React from 'react';
-    export class WoundsProps {
-        name: string;
-        injuries: any[];
-        health: number;
-        healthMax: number;
-        stamina: number;
-        staminaMax: number;
-        panic: number;
-        panicMax: number;
-        temp: number;
-        tempMax: number;
-    }
-    export class WoundsState {
-    }
-    class WoundFrame extends React.Component<WoundsProps, WoundsState> {
-        constructor(props: WoundsProps);
-        render(): JSX.Element;
-    }
-    export default WoundFrame;
+declare module '__camelot-unchained/components/components' {
+    import WoundFrame from '__camelot-unchained/components/woundframe/WoundFrame';
+    var _default: {
+        UnitFrame: __React.ClassicComponentClass<any>;
+        Effects: __React.ClassicComponentClass<any>;
+        HealthBar: __React.ClassicComponentClass<any>;
+        HealthText: __React.ClassicComponentClass<any>;
+        Name: __React.ClassicComponentClass<any>;
+        Portrait: __React.ClassicComponentClass<any>;
+        StaminaBar: __React.ClassicComponentClass<any>;
+        StaminaText: __React.ClassicComponentClass<any>;
+        Injuries: __React.ClassicComponentClass<any>;
+        Injury: __React.ClassicComponentClass<any>;
+        InjuryLocation: __React.ClassicComponentClass<any>;
+        InjuryBar: __React.ClassicComponentClass<any>;
+        InjuryText: __React.ClassicComponentClass<any>;
+        InjuryWounds: __React.ClassicComponentClass<any>;
+        WoundFrame: typeof WoundFrame;
+    };
+    export default _default;
 }
 
 declare module '__camelot-unchained/core/classes/AbilityComponent' {
@@ -1338,43 +1408,6 @@ declare module '__camelot-unchained/core/classes/AbilityComponent' {
         static create(): AbilityComponent;
     }
     export default AbilityComponent;
-}
-
-declare module '__camelot-unchained/core/classes/Inventory' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-      */
-    import Item from '__camelot-unchained/core/classes/Item';
-    class Inventory {
-        items: Item[];
-        constructor(inventory?: Inventory);
-        static create(): Inventory;
-    }
-    export default Inventory;
-}
-
-declare module '__camelot-unchained/core/classes/EquippedItems' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-      */
-    import Item from '__camelot-unchained/core/classes/Item';
-    class EquippedItems {
-        helmet: Item;
-        chest: Item;
-        pants: Item;
-        boots: Item;
-        leftHand: Item;
-        rightHand: Item;
-        leftGlove: Item;
-        rightGlove: Item;
-        constructor(equippeditems?: EquippedItems);
-        static create(): EquippedItems;
-    }
-    export default EquippedItems;
 }
 
 declare module '__camelot-unchained/core/classes/BaneBoon' {
@@ -1472,6 +1505,133 @@ declare module '__camelot-unchained/core/classes/Stats' {
     export default Stats;
 }
 
+declare module '__camelot-unchained/events/classes/HandlesAnnouncements' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    export default class HandlesAnnouncements {
+        topic: string;
+    }
+}
+
+declare module '__camelot-unchained/events/classes/HandlesChat' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    export default class HandlesChat {
+        topic: string;
+    }
+}
+
+declare module '__camelot-unchained/events/classes/HandlesCharacter' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    export default class HandlesCharacter {
+        topic: string;
+    }
+}
+
+declare module '__camelot-unchained/events/classes/HandlesEnemyTarget' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    export default class HandlesEnemyTarget {
+        topic: string;
+    }
+}
+
+declare module '__camelot-unchained/events/classes/HandlesFriendlyTarget' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    export default class HandlesFriendlyTarget {
+        topic: string;
+    }
+}
+
+declare module '__camelot-unchained/events/classes/HandlesControlGame' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    export default class HandlesControlGame {
+        topic: string;
+    }
+}
+
+declare module '__camelot-unchained/events/classes/HandlesControlGameScore' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    export default class HandlesControlGameScore {
+        topic: string;
+    }
+}
+
+declare module '__camelot-unchained/events/classes/HandlesInventory' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    export default class HandlesInventory {
+        topic: string;
+    }
+}
+
+declare module '__camelot-unchained/events/classes/HandlesEquippedGear' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    export default class HandlesEquippedGear {
+        topic: string;
+    }
+}
+
+declare module '__camelot-unchained/components/woundframe/WoundFrame' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    import * as React from 'react';
+    export class WoundsProps {
+        name: string;
+        injuries: any[];
+        health: number;
+        healthMax: number;
+        stamina: number;
+        staminaMax: number;
+        panic: number;
+        panicMax: number;
+        temp: number;
+        tempMax: number;
+    }
+    export class WoundsState {
+    }
+    class WoundFrame extends React.Component<WoundsProps, WoundsState> {
+        constructor(props: WoundsProps);
+        render(): JSX.Element;
+    }
+    export default WoundFrame;
+}
+
 declare module '__camelot-unchained/core/constants/abilityConstants/componentType' {
     /**
       * This Source Code Form is subject to the terms of the Mozilla Public
@@ -1555,25 +1715,6 @@ declare module '__camelot-unchained/core/constants/abilityConstants/componentBra
     export default componentBranchState;
 }
 
-declare module '__camelot-unchained/core/classes/Item' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-      */
-    import itemType from '__camelot-unchained/core/constants/itemType';
-    class Item {
-        id: string;
-        type: itemType;
-        name: string;
-        description: string;
-        resourceId: number;
-        constructor(item?: Item);
-        static create(): Item;
-    }
-    export default Item;
-}
-
 declare module '__camelot-unchained/core/constants/baneBoonCategory' {
     /**
       * This Source Code Form is subject to the terms of the Mozilla Public
@@ -1588,19 +1729,5 @@ declare module '__camelot-unchained/core/constants/baneBoonCategory' {
         ARCHETYPE = 4,
     }
     export default baneBoonCategory;
-}
-
-declare module '__camelot-unchained/core/constants/itemType' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-      */
-    enum itemType {
-        NONE = 0,
-        EQUIPABLE = 1,
-        RESOURCE = 2,
-    }
-    export default itemType;
 }
 
