@@ -24,8 +24,7 @@
 //
 
 import EventEmitter from '../classes/EventEmitter';
-
-declare const cuAPI: any;
+import client from '../../core/client';
 
 const EVENT_NAME = 'init';
 let initialised = false;
@@ -37,7 +36,7 @@ function run(emitter: EventEmitter) {
   if (initialised) {
     notify();
   } else {
-    cuAPI.OnInitialized(() => {
+    client.OnInitialized(() => {
       initialised = true;
       notify();
     });

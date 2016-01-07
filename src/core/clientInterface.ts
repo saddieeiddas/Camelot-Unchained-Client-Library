@@ -159,6 +159,7 @@ interface clientInterface {
   OnCharacterHealthChanged(c: (health: number, maxHealth: number) => void): void;
   OnCharacterStaminaChanged(c: (stamina: number, maxStamina: number) => void): void;
   OnCharacterEffectsChanged(c: (effects: string) => void): void;
+  OnCharacterInjuriesChanged(c: (part: number, health: number, maxHealth: number, wounds: number) => void): void;
 
   /* EMOTE */
 
@@ -170,6 +171,7 @@ interface clientInterface {
   OnEnemyTargetHealthChanged(callback: (health: number, maxHealth: number) => void): void;
   OnEnemyTargetStaminaChanged(callback: (stamina: number, maxStamina: number) => void): void;
   OnEnemyTargetEffectsChanged(callback: (effects: string) => void): void;
+  OnEnemyTargetInjuriesChanged(c: (part: number, health: number, maxHealth: number, wounds: number) => void): void;
 
   /* Friendly Target */
 
@@ -177,6 +179,7 @@ interface clientInterface {
   OnFriendlyTargetHealthChanged(callback: (health: number, maxHealth: number) => void): void;
   OnFriendlyTargetStaminaChanged(callback: (stamina: number, maxStamina: number) => void): void;
   OnFriendlyTargetEffectsChanged(callback: (effects: string) => void): void;
+  OnFriendlyTargetInjuriesChanged(c: (part: number, health: number, maxHealth: number, wounds: number) => void): void;
 
   /* Chat */
 
