@@ -5,23 +5,28 @@
  */
 
 import EventEmitter from '../classes/EventEmitter';
-import HandlesAnnouncements from '../classes/HandlesAnnouncements';
+import HandlesLogging from '../classes/HandlesLogging';
+import LogMessage from '../../core/classes/LogMessage';
 import client from '../../core/client';
 
 function run(emitter: EventEmitter, topic: string) {
-  client.OnAnnouncement((message: string, type: number) => {
-    emitter.emit(topic, {
-      message: message,
-      type: type
-    });
+  client.OnLogMessage((category: string, level: number, time: string, process: number, thread: number, message: string) => {
+    emitter.emit(topic, new LogMessage({
+      category: category,
+      level: level,
+      time: time,
+      process: process,
+      thread: thread,
+      message: message
+    }));
   });
 }
 
-export default class AnnouncementsListener {
+export default class LoggingListener {
   listening: boolean = false;
   type: string;
-  handles: HandlesAnnouncements;
-  constructor(handles: HandlesAnnouncements) {
+  handles: HandlesLogging;
+  constructor(handles: HandlesLogging) {
     this.handles = handles;
   }
   start(emitter: EventEmitter): void {

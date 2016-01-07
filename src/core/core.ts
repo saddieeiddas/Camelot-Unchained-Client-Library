@@ -35,6 +35,11 @@ import Population from './classes/Population';
 import Inventory from './classes/Inventory';
 import Item from './classes/Item';
 import EquippedGear from './classes/EquippedGear';
+import LogMessage from './classes/LogMessage';
+import ChatMessage from './classes/ChatMessage';
+import ConsoleMessage from './classes/ConsoleMessage';
+import Config from './classes/Config';
+import ConfigVar from './classes/ConfigVar';
 
 export {
   // core
@@ -69,4 +74,9 @@ export {
   Inventory,
   Item,
   EquippedGear,
+  LogMessage,
+  ChatMessage,
+  ConsoleMessage,
+  Config,
+  ConfigVar,
 }

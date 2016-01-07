@@ -5,23 +5,20 @@
  */
 
 import EventEmitter from '../classes/EventEmitter';
-import HandlesAnnouncements from '../classes/HandlesAnnouncements';
+import HandlesBeginChat from '../classes/HandlesBeginChat';
 import client from '../../core/client';
 
 function run(emitter: EventEmitter, topic: string) {
-  client.OnAnnouncement((message: string, type: number) => {
-    emitter.emit(topic, {
-      message: message,
-      type: type
-    });
+  client.OnBeginChat(() => {
+    emitter.emit(topic, true);
   });
 }
 
-export default class AnnouncementsListener {
+export default class BeginChatListener {
   listening: boolean = false;
   type: string;
-  handles: HandlesAnnouncements;
-  constructor(handles: HandlesAnnouncements) {
+  handles: HandlesBeginChat;
+  constructor(handles: HandlesBeginChat) {
     this.handles = handles;
   }
   start(emitter: EventEmitter): void {

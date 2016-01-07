@@ -6,18 +6,18 @@
 
 import EventEmitter from '../classes/EventEmitter';
 import HandlesChat from '../classes/HandlesChat';
-
-declare const cuAPI: any;
+import ChatMessage from '../../core/classes/ChatMessage';
+import client from '../../core/client';
 
 function run(emitter: EventEmitter, topic: string) {
-  cuAPI.OnChat((type: number, from: string, body: string, nick: string, iscse: boolean) => {
-    emitter.emit(topic, {
+  client.OnChat((type: number, from: string, body: string, nick: string, iscse: boolean) => {
+    emitter.emit(topic, new ChatMessage({
       type: type,
       from: from,
       body: body,
       nick: nick,
       iscse: iscse
-    });
+    }));
   });
 }
 

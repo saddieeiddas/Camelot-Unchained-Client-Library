@@ -8,7 +8,6 @@ import REST from '../../restapi/RestAPI';
 import HandlesControlGameScore from '../classes/HandlesControlGameScore';
 import ControlGame from '../../core/classes/ControlGame';
 import Population from '../../core/classes/Population';
-declare const cuAPI: any;
 
 const POLL_INTERVAL = 5000;
 let timer: any;
