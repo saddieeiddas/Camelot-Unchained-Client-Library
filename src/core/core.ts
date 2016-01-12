@@ -10,6 +10,7 @@ import client from './client';
 
 // constants
 import abilityTags from './constants/abilityConstants/abilityTags';
+import announcementType from './constants/announcementType';
 import archetype from './constants/archetype';
 import buildUIMode from './constants/buildUIMode';
 import channelId from './constants/channelId';
@@ -26,6 +27,7 @@ import gearSlot from './constants/gearSlot';
 
 // classes
 import Ability from './classes/Ability';
+import Announcement from './classes/Announcement';
 import Combatant from './classes/Combatant';
 import Player from './classes/Player';
 import Character from './classes/Character';
@@ -44,6 +46,7 @@ export {
 
   // core constants
   abilityTags,
+  announcementType,
   archetype,
   buildUIMode,
   channelId,
@@ -60,6 +63,7 @@ export {
 
   // core classes
   Ability,
+  Announcement,
   Combatant,
   Player,
   Character,
