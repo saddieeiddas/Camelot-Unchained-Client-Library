@@ -40,6 +40,7 @@ import Item from './core/classes/Item';
 import EquippedGear from './core/classes/EquippedGear';
 
 // libraries
+import * as core from './core/core';
 import events from './events/events';
 import stores from './stores/stores';
 import components from './components/components';
@@ -80,6 +81,7 @@ export {
   EquippedGear,
 
   // libraries
+  core,
   events,
   stores,
   components,

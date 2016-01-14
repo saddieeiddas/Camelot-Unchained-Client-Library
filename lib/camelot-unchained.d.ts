@@ -35,10 +35,11 @@ declare module 'camelot-unchained' {
     import Inventory from '__camelot-unchained/core/classes/Inventory';
     import Item from '__camelot-unchained/core/classes/Item';
     import EquippedGear from '__camelot-unchained/core/classes/EquippedGear';
+    import * as core from '__camelot-unchained/core/core';
     import events from '__camelot-unchained/events/events';
     import stores from '__camelot-unchained/stores/stores';
     import components from '__camelot-unchained/components/components';
-    export { CoreSettings, clientInterface, client, abilityTags, archetype, buildUIMode, channelId, dxKeyCodes, emotes, jsKeyCodes, jsToDXKeyCodeMap, race, soundEvents, tagConstraintType, tags, itemType, gearSlot, Ability, Combatant, Player, Character, ControlGame, Injury, Population, Inventory, Item, EquippedGear, events, stores, components };
+    export { CoreSettings, clientInterface, client, abilityTags, archetype, buildUIMode, channelId, dxKeyCodes, emotes, jsKeyCodes, jsToDXKeyCodeMap, race, soundEvents, tagConstraintType, tags, itemType, gearSlot, Ability, Combatant, Player, Character, ControlGame, Injury, Population, Inventory, Item, EquippedGear, core, events, stores, components };
 }
 
 declare module '__camelot-unchained/core/CoreSettings' {
@@ -1264,6 +1265,44 @@ declare module '__camelot-unchained/core/classes/EquippedGear' {
     export default EquippedGear;
 }
 
+declare module '__camelot-unchained/core/core' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    import CoreSettings from '__camelot-unchained/core/CoreSettings';
+    import clientInterface from '__camelot-unchained/core/clientInterface';
+    import client from '__camelot-unchained/core/client';
+    import abilityTags from '__camelot-unchained/core/constants/abilityConstants/abilityTags';
+    import announcementType from '__camelot-unchained/core/constants/announcementType';
+    import archetype from '__camelot-unchained/core/constants/archetype';
+    import buildUIMode from '__camelot-unchained/core/constants/buildUIMode';
+    import channelId from '__camelot-unchained/core/constants/channelId';
+    import dxKeyCodes from '__camelot-unchained/core/constants/dxKeyCodes';
+    import emotes from '__camelot-unchained/core/constants/emotes';
+    import jsKeyCodes from '__camelot-unchained/core/constants/jsKeyCodes';
+    import jsToDXKeyCodeMap from '__camelot-unchained/core/constants/jsToDXKeyCodeMap';
+    import race from '__camelot-unchained/core/constants/race';
+    import soundEvents from '__camelot-unchained/core/constants/soundEvents';
+    import tagConstraintType from '__camelot-unchained/core/constants/tagConstraintType';
+    import tags from '__camelot-unchained/core/constants/tags';
+    import itemType from '__camelot-unchained/core/constants/itemType';
+    import gearSlot from '__camelot-unchained/core/constants/gearSlot';
+    import Ability from '__camelot-unchained/core/classes/Ability';
+    import Announcement from '__camelot-unchained/core/classes/Announcement';
+    import Combatant from '__camelot-unchained/core/classes/Combatant';
+    import Player from '__camelot-unchained/core/classes/Player';
+    import Character from '__camelot-unchained/core/classes/Character';
+    import ControlGame from '__camelot-unchained/core/classes/ControlGame';
+    import Injury from '__camelot-unchained/core/classes/Injury';
+    import Population from '__camelot-unchained/core/classes/Population';
+    import Inventory from '__camelot-unchained/core/classes/Inventory';
+    import Item from '__camelot-unchained/core/classes/Item';
+    import EquippedGear from '__camelot-unchained/core/classes/EquippedGear';
+    export { CoreSettings, clientInterface, client, abilityTags, announcementType, archetype, buildUIMode, channelId, dxKeyCodes, emotes, jsKeyCodes, jsToDXKeyCodeMap, race, soundEvents, tagConstraintType, tags, itemType, gearSlot, Ability, Announcement, Combatant, Player, Character, ControlGame, Injury, Population, Inventory, Item, EquippedGear };
+}
+
 declare module '__camelot-unchained/events/events' {
     import HandlesAnnouncements from '__camelot-unchained/events/classes/HandlesAnnouncements';
     import HandlesChat from '__camelot-unchained/events/classes/HandlesChat';
@@ -1503,6 +1542,35 @@ declare module '__camelot-unchained/core/classes/Stats' {
         static create(): Stats;
     }
     export default Stats;
+}
+
+declare module '__camelot-unchained/core/constants/announcementType' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    enum announcementType {
+        TEXT = 1,
+        POPUP = 2,
+        ALL = 3,
+    }
+    export default announcementType;
+}
+
+declare module '__camelot-unchained/core/classes/Announcement' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    import announcementType from '__camelot-unchained/core/constants/announcementType';
+    class Announcement {
+        message: string;
+        type: announcementType;
+        constructor(message?: string, type?: announcementType);
+    }
+    export default Announcement;
 }
 
 declare module '__camelot-unchained/events/classes/HandlesAnnouncements' {
