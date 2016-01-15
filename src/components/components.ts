@@ -25,6 +25,9 @@ import InjuryWounds from './unitframe/components/InjuryWounds';
 // Wound Frame
 import WoundFrame from './woundframe/WoundFrame';
 
+// Non-frame components
+import QuickSelect from './quickselect/QuickSelect';
+
 export default {
   UnitFrame,
   Effects,
@@ -42,4 +45,6 @@ export default {
   InjuryWounds,
 
   WoundFrame,
+  
+  QuickSelect,
 }
