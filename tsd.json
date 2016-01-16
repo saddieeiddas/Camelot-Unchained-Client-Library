@@ -6,10 +6,19 @@
   "bundle": "src/tsd/tsd.d.ts",
   "installed": {
     "react/react.d.ts": {
-      "commit": "78d36dd49b6b55b9fdfe61776a12bf05c8b07777"
+      "commit": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "react/react-dom.d.ts": {
       "commit": "78d36dd49b6b55b9fdfe61776a12bf05c8b07777"
+    },
+    "react/react-addons-transition-group.d.ts": {
+      "commit": "138ad74b9e8e6c08af7633964962835add4c91e2"
+    },
+    "react/react-addons-css-transition-group.d.ts": {
+      "commit": "138ad74b9e8e6c08af7633964962835add4c91e2"
+    },
+    "es6-promise/es6-promise.d.ts": {
+      "commit": "f29bf726a60674dbf24bab06a26403a3871c3f21"
     }
   }
 }

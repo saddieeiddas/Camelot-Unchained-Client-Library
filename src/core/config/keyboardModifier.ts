@@ -4,6 +4,11 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-export default class HandlesCharacter {
-  topic: string = 'character';
+enum keyboardModifier {
+  NONE = 0,
+  CTRL = 1 << 0,
+  ALT = 1 << 1,
+  SHIFT = 1 << 2
 }
+
+export default keyboardModifier;

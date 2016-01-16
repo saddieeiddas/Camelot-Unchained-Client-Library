@@ -4,7 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 import EventEmitter from '../classes/EventEmitter';
-import REST from '../../restapi/RestAPI';
+import {getControlGame, getAllPlayers} from '../../restapi/RestAPI';
 import HandlesControlGameScore from '../classes/HandlesControlGameScore';
 import ControlGame from '../../core/classes/ControlGame';
 import Population from '../../core/classes/Population';
@@ -14,7 +14,6 @@ const POLL_INTERVAL = 5000;
 let timer: any;
 
 function run(emitter: EventEmitter, topic: string) {
-  let rest = new REST();
   let info: any = {};
 
   // Handle tick
@@ -32,22 +31,24 @@ function run(emitter: EventEmitter, topic: string) {
     }
 
     // Get control game (score only)
-    rest.controlGame({ includeControlPoints: false })
+    getControlGame(false)
       .then((data: ControlGame) => {
         info.score = new ControlGame(data);
         done();
-      }, (status: string, errorThrown: string) => {
-        info.error = { status: status, reason: errorThrown };
+      })
+      .catch((error: Error) => {
+        info.error = { status: (<any>error).response.status, reason: error.message };
         done();
       });
 
     // and player counts
-    rest.players()
+    getAllPlayers()
       .then((data: Population) => {
         info.players = new Population(data);
         done();
-      }, (status: string, errorThrown: string) => {
-        info.error = { status: status, reason: errorThrown };
+      })
+      .catch((error: Error) => {
+        info.error = { status: (<any>error).response.status, reason: error.message };
         done();
       });
   }

@@ -5,7 +5,7 @@
  */
 
 //import * as Rest from '../util/RestAPI';
-import RestAPI from '../../restapi/RestAPI';
+import {getCraftedAbilities} from '../../restapi/RestAPI';
 
 import AbilityComponent from './AbilityComponent';
 class Ability {
@@ -35,15 +35,16 @@ class Ability {
     this.abilityComponents = ability.abilityComponents || <AbilityComponent[]>[];
   }
 
-  public static getAllAbilities(logonToken: string, characterID: string, callback: (abilities: Ability[]) => void) {
-    let rest = new RestAPI();
-    rest.craftedAbilities(logonToken, characterID).then(function (data: Object[]) {
-      if (callback) {
-        callback(data.map((o) => new Ability(<Ability>o)));
-      }
-    }, function (status: any, errorThrown: any) {
-      console.log('status: ' + status + ' reason:' + errorThrown);
-    });
+  public static getAllAbilities(loginToken: string, characterID: string, callback: (abilities: Ability[]) => void) {
+    getCraftedAbilities(loginToken, characterID)
+      .then((data: Object[]) => {
+        if (callback) {
+          callback(data.map((o) => new Ability(<Ability>o)));
+        }
+      })
+      .catch((error: Error) => {
+        console.log(`error: ${error.message} | response: ${(<any>error).response}`);
+      });
   }
 }
 

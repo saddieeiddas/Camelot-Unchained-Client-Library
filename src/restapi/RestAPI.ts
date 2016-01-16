@@ -4,13 +4,13 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+import {fetch} from 'isomorphic-fetch';
+import {Promise} from 'es6-promise';
+
 import CoreSettings from '../core/CoreSettings';
 import channelId from '../core/constants/channelId';
-import client from '../core/client';
-
-// TODO: Define promise properly.  Can't use this as a return type
-// for methods returning a promise.
-declare const Promise: any;
+import client, {hasClientAPI} from '../core/client';
+import events from '../events/events';
 
 // TODO: I wanted this to extend CoreSettings but CoreSettings
 // won't allow super to access its memebers, or pass anything
@@ -49,146 +49,107 @@ class Settings {
 	}
 }
 
-export class Rest {
+// default to Hatchery
+let settings = new Settings(4);
+if (hasClientAPI()) {
+    events.on('init', () => {
+    settings = new Settings(client.patchResourceChannel);
+  })
+}
 
-	private settings: Settings;
+function makeAPIUrl(endpoint: string, useHttps: boolean): string {
+  if (endpoint.indexOf('://') != -1) return; // we already have a fully formed url, skip
+  var protocol = useHttps ? 'https' : 'http';
+  var port = useHttps ? '4443' : '8000';
+  return protocol + '://' + settings.url + ':' + port + '/api/' + endpoint;
+}
 
-	constructor() {
-	}
-
-	selectServer(channel:channelId) {
-		this.settings = new Settings(channel);
-	}
-
-  makeUrl(verb: string, useHttps: boolean) {
-    var protocol = useHttps ? 'https' : 'http';
-    var port = useHttps ? '4443' : '8000';
-    return protocol + '://' + this.settings.url + ':' + port + '/api/' + verb;
-  }
-
-  request(method: string, verb: string, params: any = {}, useHttps:boolean = false, timeout: number = 0) {
-		let url: string;
-
-		// construct request URL
-    url = this.makeUrl(verb, useHttps);
-
-		// add params
-    if (params) {
-      let key: string;
-      let qs: string[] = [];
-      for (key in params) {
-        if (params.hasOwnProperty(key)) {
-          qs.push(key + "=" + encodeURIComponent(params[key]));
-        }
-      }
-      if (qs.length) {
-        url += "?" + qs.join("&");
-      }
-    }
-
-		function executor(resolve: (data: any) => void, reject: (status: string, errorThrown: string) => void) {
-			const XHR : XMLHttpRequest = new XMLHttpRequest();
-
-			// Set timeout
-      if (0 < timeout) {
-        XHR.timeout = timeout;
-      }
-
-      /*
-      * https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
-      * claims listeners need to be added before calling open
-      */
-      XHR.addEventListener("progress", (ev: ProgressEvent) => {
-        console.dir(ev);
-      });
-
-      XHR.addEventListener("load", (ev: UIEvent) => {
-        if (XHR.readyState === 4 && XHR.status === 200) {
-          try {
-            const data: any = JSON.parse(XHR.response);
-            resolve(data);
-          } catch (e) {
-            reject("parse-fail", e.message);
-          }
-        }
-      });
-
-      XHR.addEventListener("abort", (ev: UIEvent) => {
-        reject("abort", "aborted");
-      });
-
-      XHR.addEventListener("error", (ev: UIEvent) => {
-        reject("error", "errored");
-      });
-
-			// TODO: Implement progressive timeouts
-			XHR.open(method, url, true);
-			XHR.send();
-		}
-
-		return new Promise(executor);
-	}
-
-  GET(verb: string, params: Object = {}, timeout: number = 0, useHttps: boolean = false) {
-    return this.request("GET", verb, params, useHttps, timeout);
+function checkStatus(response: any) {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  } else {
+    let error = new Error(response.statusText);
+    (<any>error).response = response;
+    throw error;
   }
 }
 
-export default class RestAPI {
-	private api: Rest;
-	constructor() {
-		this.api = new Rest();
-		let server: string [] = client.webAPIHost.split(".");
-		switch(server[0]) {
-			case "hatchery":
-				this.api.selectServer(channelId.HATCHERY);
-				break;
-			case "wyrmling":
-				this.api.selectServer(channelId.WYRMLING);
-				break;
-		}
-	}
+function parseJSON(response: any) {
+  return response.json();
+}
 
-  factions(timeout: number = 2000) {
-    return this.api.GET("game/factions", {}, timeout);
-	}
-	races(timeout: number = 2000) {
-    return this.api.GET("game/races", {}, timeout);
-	}
-	players(timeout: number = 2000) {
-    return this.api.GET("game/players", {}, timeout);
-	}
-	banes() {
-		return this.api.GET("game/banes");
-	}
-	boons() {
-		return this.api.GET("game/boons");
-	}
-	attributes() {
-		return this.api.GET("game/attributes");
-	}
-
-	//	Optional Query Parameters: {
-	//		includeControlPoints: false 		// true/false
-  //	}
-  controlGame(query: Object = undefined, timeout = 3000) {
-		return this.api.GET("game/controlgame", query, timeout);
-	}
-
-	patchnotes() {
-		return this.api.GET("patchnotes");
-	}
-	banners() {
-		return this.api.GET("banners");
-	}
-	scheduledEvents() {
-		return this.api.GET("scheduledevents");
-	}
-	kills(query:Object = undefined, timeout:number = 2000) {
-		return this.api.GET("kills", query, timeout);
+function makeQueryString(url: string, params: any = {}): string {
+  if (!params) return url;
+  
+  let key: string;
+  let qs: string[] = [];
+  for (key in params) {
+    if (params.hasOwnProperty(key)) {
+      qs.push(key + "=" + encodeURIComponent(params[key]));
+    }
   }
-
-  public craftedAbilities(loginToken: string, characterID: string) {
-    return this.api.GET("craftedabilities", { loginToken: loginToken, characterID: characterID }, 0, true);
+  if (qs.length) {
+    url += "?" + qs.join("&");
   }
+}
+
+export function getJSON(endpoint: string, useHttps: boolean = false, query: any = {}): Promise<any> {
+  return fetch(makeQueryString(makeAPIUrl(endpoint, useHttps), query))
+    .then(checkStatus)
+    .then(parseJSON);
+}
+
+export function getFactions() {
+  return getJSON('game/factions');
+}
+
+export function getCraftedAbilities(loginToken: string, characterID: string) {
+  return getJSON('craftedabilities', false, {
+      loginToken: loginToken,
+      characterID: characterID
+    });
+}
+
+export function getKills(query: Object = {}) {
+  return getJSON('kills', false, query);
+}
+
+export function getScheduledEvents() {
+  return getJSON('scheduledevents');
+}
+
+export function getBanners() {
+  return getJSON('banners');
+}
+
+export function getPatchNotes() {
+  return getJSON('patchnotes');
+}
+
+export function getControlGame(includeControlPoints: boolean = false) {
+  return getJSON('game/controlgame', false, {includeControlPoints: includeControlPoints});
+}
+
+export function getAllAttributes() {
+  return getJSON('game/attributes');
+}
+
+export function getAllBoons() {
+  return getJSON('game/boons');
+}
+
+export function getAllBanes() {
+  return getJSON('game/banes');
+}
+
+export function getAllPlayers() {
+  return getJSON('game/players');
+}
+
+export function getAllRaces() {
+  return getJSON('game/races');
+}
+
+export function getAllFactions() {
+  return getJSON('game/factions');
 }

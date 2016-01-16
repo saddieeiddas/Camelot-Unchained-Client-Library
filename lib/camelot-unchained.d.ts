@@ -15,14 +15,10 @@ declare module 'camelot-unchained' {
     import archetype from '__camelot-unchained/core/constants/archetype';
     import buildUIMode from '__camelot-unchained/core/constants/buildUIMode';
     import channelId from '__camelot-unchained/core/constants/channelId';
-    import dxKeyCodes from '__camelot-unchained/core/constants/dxKeyCodes';
     import emotes from '__camelot-unchained/core/constants/emotes';
-    import jsKeyCodes from '__camelot-unchained/core/constants/jsKeyCodes';
-    import jsToDXKeyCodeMap from '__camelot-unchained/core/constants/jsToDXKeyCodeMap';
     import race from '__camelot-unchained/core/constants/race';
     import soundEvents from '__camelot-unchained/core/constants/soundEvents';
     import tagConstraintType from '__camelot-unchained/core/constants/tagConstraintType';
-    import tags from '__camelot-unchained/core/constants/tags';
     import itemType from '__camelot-unchained/core/constants/itemType';
     import gearSlot from '__camelot-unchained/core/constants/gearSlot';
     import Ability from '__camelot-unchained/core/classes/Ability';
@@ -39,7 +35,7 @@ declare module 'camelot-unchained' {
     import events from '__camelot-unchained/events/events';
     import stores from '__camelot-unchained/stores/stores';
     import components from '__camelot-unchained/components/components';
-    export { CoreSettings, clientInterface, client, abilityTags, archetype, buildUIMode, channelId, dxKeyCodes, emotes, jsKeyCodes, jsToDXKeyCodeMap, race, soundEvents, tagConstraintType, tags, itemType, gearSlot, Ability, Combatant, Player, Character, ControlGame, Injury, Population, Inventory, Item, EquippedGear, core, events, stores, components };
+    export { CoreSettings, clientInterface, client, abilityTags, archetype, buildUIMode, channelId, emotes, race, soundEvents, tagConstraintType, itemType, gearSlot, Ability, Combatant, Player, Character, ControlGame, Injury, Population, Inventory, Item, EquippedGear, core, events, stores, components };
 }
 
 declare module '__camelot-unchained/core/CoreSettings' {
@@ -69,7 +65,7 @@ declare module '__camelot-unchained/core/clientInterface' {
       * License, v. 2.0. If a copy of the MPL was not distributed with this
       * file, You can obtain one at http://mozilla.org/MPL/2.0/.
       */
-    import tags from '__camelot-unchained/core/constants/tags';
+    import configGroup from '__camelot-unchained/core/config/configGroup';
     import race from '__camelot-unchained/core/constants/race';
     interface clientInterface {
         initialized: boolean;
@@ -131,11 +127,11 @@ declare module '__camelot-unchained/core/clientInterface' {
         OnConfigVarChanged(c: (isChangeSuccessful: boolean) => void): void;
         SaveConfigChanges(): void;
         OnSavedConfigChanges(c: () => void): void;
-        RestoreConfigDefaults(tag: tags): void;
+        RestoreConfigDefaults(tag: configGroup): void;
         ChangeConfigVar(variable: string, value: string): void;
         CancelChangeConfig(variable: string): void;
-        CancelAllConfigChanges(tag: tags): void;
-        GetConfigVars(tag: tags): void;
+        CancelAllConfigChanges(tag: configGroup): void;
+        GetConfigVars(tag: configGroup): void;
         GetConfigVar(variable: string): void;
         OnBuildingModeChanged(c: (buildingMode: boolean) => void): void;
         OnReceiveBlocks(c: (buildingDict: any) => void): void;
@@ -249,6 +245,7 @@ declare module '__camelot-unchained/core/client' {
       */
     import clientInterface from '__camelot-unchained/core/clientInterface';
     let client: clientInterface;
+    export function hasClientAPI(): clientInterface;
     export default client;
 }
 
@@ -366,161 +363,6 @@ declare module '__camelot-unchained/core/constants/channelId' {
     export default channelId;
 }
 
-declare module '__camelot-unchained/core/constants/dxKeyCodes' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-      */
-    enum dxKeyCodes {
-        'ESCAPE' = 1,
-        'ONE' = 2,
-        'TWO' = 3,
-        'THREE' = 4,
-        'FOUR' = 5,
-        'FIVE' = 6,
-        'SIX' = 7,
-        'SEVEN' = 8,
-        'EIGHT' = 9,
-        'NINE' = 10,
-        'ZERO' = 11,
-        '-' = 12,
-        '=' = 13,
-        'BACKSPACE' = 14,
-        'TAB' = 15,
-        'Q' = 16,
-        'W' = 17,
-        'E' = 18,
-        'R' = 19,
-        'T' = 20,
-        'Y' = 21,
-        'U' = 22,
-        'I' = 23,
-        'O' = 24,
-        'P' = 25,
-        'LBRACKET' = 26,
-        'RBRACKET' = 27,
-        'RETURN' = 28,
-        'LCONTROL' = 29,
-        'A' = 30,
-        'S' = 31,
-        'D' = 32,
-        'F' = 33,
-        'G' = 34,
-        'H' = 35,
-        'J' = 36,
-        'K' = 37,
-        'L' = 38,
-        'SEMICOLON' = 39,
-        'APOSTROPHE' = 40,
-        '`' = 41,
-        'LSHIFT' = 42,
-        'BACKSLASH' = 43,
-        'Z' = 44,
-        'X' = 45,
-        'C' = 46,
-        'V' = 47,
-        'B' = 48,
-        'N' = 49,
-        'M' = 50,
-        'COMMA' = 51,
-        'PERIOD' = 52,
-        'SLASH' = 53,
-        'RSHIFT' = 54,
-        'MULTIPLY' = 55,
-        'LALT' = 56,
-        'SPACE' = 57,
-        'CAPSLOCK' = 58,
-        'F1' = 59,
-        'F2' = 60,
-        'F3' = 61,
-        'F4' = 62,
-        'F5' = 63,
-        'F6' = 64,
-        'F7' = 65,
-        'F8' = 66,
-        'F9' = 67,
-        'F10' = 68,
-        'NUMLOCK' = 69,
-        'SCROLLLOCK' = 70,
-        'NUMPAD7' = 71,
-        'NUMPAD8' = 72,
-        'NUMPAD9' = 73,
-        'NUMPAD-' = 74,
-        'NUMPAD4' = 75,
-        'NUMPAD5' = 76,
-        'NUMPAD6' = 77,
-        'NUMPAD+' = 78,
-        'NUMPAD1' = 79,
-        'NUMPAD2' = 80,
-        'NUMPAD3' = 81,
-        'NUMPAD0' = 82,
-        'NUMPAD.' = 83,
-        'OEM_102' = 86,
-        'F11' = 87,
-        'F12' = 88,
-        'F13' = 100,
-        'F14' = 101,
-        'F15' = 102,
-        'KANA' = 112,
-        'ABNT_C1' = 115,
-        'CONVERT' = 121,
-        'NOCONVERT' = 123,
-        'YEN' = 125,
-        'ABNT_C2' = 126,
-        'NUMPADEQUALS' = 141,
-        'PREVTRACK' = 144,
-        'AT' = 145,
-        'COLON' = 146,
-        'UNDERLINE' = 147,
-        'KANJI' = 148,
-        'STOP' = 149,
-        'AX' = 150,
-        'UNLABELED' = 151,
-        'NEXTTRACK' = 153,
-        'NUMPADENTER' = 156,
-        'RCONTROL' = 157,
-        'MUTE' = 160,
-        'CALCULATOR' = 161,
-        'PLAYPAUSE' = 162,
-        'MEDIASTOP' = 164,
-        'VOLUMEDOWN' = 174,
-        'VOLUMEUP' = 176,
-        'WEBHOME' = 178,
-        'NUMPAD,' = 179,
-        'NUMPAD/' = 181,
-        'SYSRQ' = 183,
-        'RALT' = 184,
-        'PAUSE' = 197,
-        'HOME ' = 199,
-        'UP' = 200,
-        'PAGEUP' = 201,
-        'LEFT' = 203,
-        'RIGHT' = 205,
-        'END' = 207,
-        'DOWN' = 208,
-        'PAGEDN' = 209,
-        'INSERT' = 210,
-        'DELETE' = 211,
-        'LWIN' = 219,
-        'RWIN' = 220,
-        'APPS' = 221,
-        'POWER' = 222,
-        'SLEEP' = 223,
-        'WAKE' = 227,
-        'WEBSEARCH' = 229,
-        'WEBFAVORITES' = 230,
-        'WEBREFRESH' = 231,
-        'WEBSTOP' = 232,
-        'WEBFORWARD' = 233,
-        'WEBBACK' = 234,
-        'MYCOMPUTER' = 235,
-        'MAIL' = 236,
-        'MEDIASELECT' = 237,
-    }
-    export default dxKeyCodes;
-}
-
 declare module '__camelot-unchained/core/constants/emotes' {
     /**
       * This Source Code Form is subject to the terms of the Mozilla Public
@@ -536,242 +378,6 @@ declare module '__camelot-unchained/core/constants/emotes' {
         NONE = 5,
     }
     export default emotes;
-}
-
-declare module '__camelot-unchained/core/constants/jsKeyCodes' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-      */
-    enum jsKeyCodes {
-        'BACKSPACE' = 8,
-        'TAB' = 9,
-        'ENTER' = 13,
-        'SHIFT' = 16,
-        'CTRL' = 17,
-        'ALT' = 18,
-        'PAUSE/BREAK' = 19,
-        'CAPSLOCK' = 20,
-        'ESC' = 27,
-        'SPACE' = 32,
-        'PAGEUP' = 33,
-        'PAGEDOWN' = 34,
-        'END' = 35,
-        'HOME' = 36,
-        'LEFT' = 37,
-        'UP' = 38,
-        'RIGHT' = 39,
-        'DOWN' = 40,
-        'INSERT' = 45,
-        'DELETE' = 46,
-        'ZERO' = 48,
-        'ONE' = 49,
-        'TWO' = 50,
-        'THREE' = 51,
-        'FOUR' = 52,
-        'FIVE' = 53,
-        'SIX' = 54,
-        'SEVEN' = 55,
-        'EIGHT' = 56,
-        'NINE' = 57,
-        'A' = 65,
-        'B' = 66,
-        'C' = 67,
-        'D' = 68,
-        'E' = 69,
-        'F' = 70,
-        'G' = 71,
-        'H' = 72,
-        'I' = 73,
-        'J' = 74,
-        'K' = 75,
-        'L' = 76,
-        'M' = 77,
-        'N' = 78,
-        'O' = 79,
-        'P' = 80,
-        'Q' = 81,
-        'R' = 82,
-        'S' = 83,
-        'T' = 84,
-        'U' = 85,
-        'V' = 86,
-        'W' = 87,
-        'X' = 88,
-        'Y' = 89,
-        'Z' = 90,
-        'WINDOWS' = 91,
-        'RIGHTCLICK' = 93,
-        'NUMPAD0' = 96,
-        'NUMPAD1' = 97,
-        'NUMPAD2' = 98,
-        'NUMPAD3' = 99,
-        'NUMPAD4' = 100,
-        'NUMPAD5' = 101,
-        'NUMPAD6' = 102,
-        'NUMPAD7' = 103,
-        'NUMPAD8' = 104,
-        'NUMPAD9' = 105,
-        'NUMPAD*' = 106,
-        'NUMPAD+' = 107,
-        'NUMPAD-' = 109,
-        'NUMPAD.' = 110,
-        'NUMPAD/' = 111,
-        'F1' = 112,
-        'F2' = 113,
-        'F3' = 114,
-        'F4' = 115,
-        'F5' = 116,
-        'F6' = 117,
-        'F7' = 118,
-        'F8' = 119,
-        'F9' = 120,
-        'F10' = 121,
-        'F11' = 122,
-        'F12' = 123,
-        'NUMLOCK' = 144,
-        'SCROLLLOCK' = 145,
-        'MYCOMPUTER' = 182,
-        'MYCALCULATOR' = 183,
-        ';' = 186,
-        '=' = 187,
-        ',' = 188,
-        '-' = 189,
-        '.' = 190,
-        '/' = 191,
-        '`' = 192,
-        '[' = 219,
-        '\\' = 220,
-        ']' = 221,
-        '\'' = 222,
-    }
-    export default jsKeyCodes;
-}
-
-declare module '__camelot-unchained/core/constants/jsToDXKeyCodeMap' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-      */
-    const jsToDXKeyCodeMap: {
-        8: number;
-        9: number;
-        13: number;
-        16: number;
-        17: number;
-        18: number;
-        19: number;
-        20: number;
-        27: number;
-        32: number;
-        33: number;
-        34: number;
-        35: number;
-        36: number;
-        37: number;
-        38: number;
-        39: number;
-        40: number;
-        45: number;
-        46: number;
-        48: number;
-        49: number;
-        50: number;
-        51: number;
-        52: number;
-        53: number;
-        54: number;
-        55: number;
-        56: number;
-        57: number;
-        65: number;
-        66: number;
-        67: number;
-        68: number;
-        69: number;
-        70: number;
-        71: number;
-        72: number;
-        73: number;
-        74: number;
-        75: number;
-        76: number;
-        77: number;
-        78: number;
-        79: number;
-        80: number;
-        81: number;
-        82: number;
-        83: number;
-        84: number;
-        85: number;
-        86: number;
-        87: number;
-        88: number;
-        89: number;
-        90: number;
-        91: number;
-        92: number;
-        96: number;
-        97: number;
-        98: number;
-        99: number;
-        100: number;
-        101: number;
-        102: number;
-        103: number;
-        104: number;
-        105: number;
-        106: number;
-        107: number;
-        109: number;
-        110: number;
-        111: number;
-        112: number;
-        113: number;
-        114: number;
-        115: number;
-        116: number;
-        117: number;
-        118: number;
-        119: number;
-        120: number;
-        121: number;
-        122: number;
-        123: number;
-        144: number;
-        145: number;
-        0xA6: number;
-        0xA7: number;
-        0xA8: number;
-        0xA9: number;
-        0xAA: number;
-        0xAB: number;
-        0xAC: number;
-        0xAD: number;
-        0xAE: number;
-        0xAF: number;
-        0xB0: number;
-        0xB1: number;
-        0xB2: number;
-        0xB3: number;
-        0xB4: number;
-        0xB5: number;
-        186: number;
-        187: number;
-        188: number;
-        189: number;
-        190: number;
-        191: number;
-        192: number;
-        219: number;
-        220: number;
-        221: number;
-        222: number;
-    };
-    export default jsToDXKeyCodeMap;
 }
 
 declare module '__camelot-unchained/core/constants/race' {
@@ -887,19 +493,6 @@ declare module '__camelot-unchained/core/constants/tagConstraintType' {
     export default tagContstraintType;
 }
 
-declare module '__camelot-unchained/core/constants/tags' {
-    /**
-        * These are the tags needed by the C++ Layer to know which build variables
-        * to send to the window.
-        */
-    enum tags {
-            KEYBIND = 2,
-            INPUT = 6,
-            AUDIO = 8,
-    }
-    export default tags;
-}
-
 declare module '__camelot-unchained/core/constants/itemType' {
     /**
       * This Source Code Form is subject to the terms of the Mozilla Public
@@ -955,7 +548,7 @@ declare module '__camelot-unchained/core/classes/Ability' {
             (a: Ability): any;
         }[];
         constructor(ability?: Ability);
-        static getAllAbilities(logonToken: string, characterID: string, callback: (abilities: Ability[]) => void): void;
+        static getAllAbilities(loginToken: string, characterID: string, callback: (abilities: Ability[]) => void): void;
     }
     export default Ability;
 }
@@ -1279,16 +872,13 @@ declare module '__camelot-unchained/core/core' {
     import archetype from '__camelot-unchained/core/constants/archetype';
     import buildUIMode from '__camelot-unchained/core/constants/buildUIMode';
     import channelId from '__camelot-unchained/core/constants/channelId';
-    import dxKeyCodes from '__camelot-unchained/core/constants/dxKeyCodes';
     import emotes from '__camelot-unchained/core/constants/emotes';
-    import jsKeyCodes from '__camelot-unchained/core/constants/jsKeyCodes';
-    import jsToDXKeyCodeMap from '__camelot-unchained/core/constants/jsToDXKeyCodeMap';
     import race from '__camelot-unchained/core/constants/race';
     import soundEvents from '__camelot-unchained/core/constants/soundEvents';
     import tagConstraintType from '__camelot-unchained/core/constants/tagConstraintType';
-    import tags from '__camelot-unchained/core/constants/tags';
     import itemType from '__camelot-unchained/core/constants/itemType';
     import gearSlot from '__camelot-unchained/core/constants/gearSlot';
+    export * from '__camelot-unchained/core/config/config';
     import Ability from '__camelot-unchained/core/classes/Ability';
     import Announcement from '__camelot-unchained/core/classes/Announcement';
     import Combatant from '__camelot-unchained/core/classes/Combatant';
@@ -1300,7 +890,7 @@ declare module '__camelot-unchained/core/core' {
     import Inventory from '__camelot-unchained/core/classes/Inventory';
     import Item from '__camelot-unchained/core/classes/Item';
     import EquippedGear from '__camelot-unchained/core/classes/EquippedGear';
-    export { CoreSettings, clientInterface, client, abilityTags, announcementType, archetype, buildUIMode, channelId, dxKeyCodes, emotes, jsKeyCodes, jsToDXKeyCodeMap, race, soundEvents, tagConstraintType, tags, itemType, gearSlot, Ability, Announcement, Combatant, Player, Character, ControlGame, Injury, Population, Inventory, Item, EquippedGear };
+    export { CoreSettings, clientInterface, client, abilityTags, announcementType, archetype, buildUIMode, channelId, emotes, race, soundEvents, tagConstraintType, itemType, gearSlot, Ability, Announcement, Combatant, Player, Character, ControlGame, Injury, Population, Inventory, Item, EquippedGear };
 }
 
 declare module '__camelot-unchained/events/events' {
@@ -1395,6 +985,19 @@ declare module '__camelot-unchained/components/components' {
         QuickSelect: typeof QuickSelect;
     };
     export default _default;
+}
+
+declare module '__camelot-unchained/core/config/configGroup' {
+    /**
+        * These are the tags needed by the C++ Layer to know which build variables
+        * to send to the window.
+        */
+    enum configGroup {
+            KEYBIND = 2,
+            INPUT = 6,
+            AUDIO = 8,
+    }
+    export default configGroup;
 }
 
 declare module '__camelot-unchained/core/classes/AbilityComponent' {
@@ -1560,6 +1163,26 @@ declare module '__camelot-unchained/core/constants/announcementType' {
     export default announcementType;
 }
 
+declare module '__camelot-unchained/core/config/config' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    import configCategory from '__camelot-unchained/core/config/configCategory';
+    import configGroup from '__camelot-unchained/core/config/configGroup';
+    import ConfigVar from '__camelot-unchained/core/config/ConfigVar';
+    import dxKeyCodes from '__camelot-unchained/core/config/dxKeyCodes';
+    import jsKeyCodes from '__camelot-unchained/core/config/jsKeyCodes';
+    import jsToDXKeyCodeMap from '__camelot-unchained/core/config/jsToDXKeyCodeMap';
+    import KeyBind from '__camelot-unchained/core/config/KeyBind';
+    import KeyBindConfigVar from '__camelot-unchained/core/config/KeyBindConfigVar';
+    import keyboardModifier from '__camelot-unchained/core/config/keyboardModifier';
+    import AudioConfigVar from '__camelot-unchained/core/config/AudioConfigVar';
+    export * from '__camelot-unchained/core/config/AudioSetting';
+    export { configCategory, configGroup, ConfigVar, dxKeyCodes, jsKeyCodes, jsToDXKeyCodeMap, KeyBind, KeyBindConfigVar, keyboardModifier, AudioConfigVar };
+}
+
 declare module '__camelot-unchained/core/classes/Announcement' {
     /**
       * This Source Code Form is subject to the terms of the Mozilla Public
@@ -1680,6 +1303,581 @@ declare module '__camelot-unchained/components/woundframe/WoundFrame' {
       * License, v. 2.0. If a copy of the MPL was not distributed with this
       * file, You can obtain one at http://mozilla.org/MPL/2.0/.
       */
+    import * as React from 'react';
+    export class WoundsProps {
+        name: string;
+        injuries: any[];
+        health: number;
+        healthMax: number;
+        stamina: number;
+        staminaMax: number;
+        panic: number;
+        panicMax: number;
+        temp: number;
+        tempMax: number;
+    }
+    export class WoundsState {
+    }
+    class WoundFrame extends React.Component<WoundsProps, WoundsState> {
+        constructor(props: WoundsProps);
+        render(): JSX.Element;
+    }
+    export default WoundFrame;
+}
+
+declare module '__camelot-unchained/core/constants/abilityConstants/componentType' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http//mozilla.org/MPL/2.0/.
+      */
+    export enum componentType {
+        Primary = 0,
+        Secondary = 1,
+        OptionalModifier = 2,
+        SpecialModal = 3,
+        IndependantModal = 4,
+    }
+    export default componentType;
+}
+
+declare module '__camelot-unchained/core/constants/abilityConstants/componentPath' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http//mozilla.org/MPL/2.0/.
+      */
+    export enum componentPath {
+        'Path 1' = 0,
+        'Path 2' = 1,
+        'Path 3' = 2,
+        'Path 4' = 3,
+    }
+    export default componentPath;
+}
+
+declare module '__camelot-unchained/core/constants/abilityConstants/componentSubType' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http//mozilla.org/MPL/2.0/.
+      */
+    export enum componentSubType {
+        None = 0,
+        Rune = 1,
+        Shape = 2,
+        Range = 4,
+        Size = 8,
+        Infusion = 16,
+        Focus = 32,
+        Transposition = 64,
+        Weapon = 128,
+        Style = 256,
+        Speed = 512,
+        Potential = 1024,
+        Target = 2048,
+        Stance = 4096,
+        RangedWeapon = 8192,
+        Load = 16384,
+        Prepare = 32768,
+        Draw = 65536,
+        Aim = 131072,
+        Voice = 262144,
+        Instrument = 524288,
+        Shout = 1048576,
+        Song = 2097152,
+        Inflection = 4194304,
+        Technique = 8388608,
+        DeadPrimary = 16777216,
+        DeadSecondary = 33554432,
+    }
+    export default componentSubType;
+}
+
+declare module '__camelot-unchained/core/constants/abilityConstants/componentBranchState' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http//mozilla.org/MPL/2.0/.
+      */
+    export enum componentBranchState {
+        Disabled = 0,
+        Open = 1,
+        Slotted = 2,
+    }
+    export default componentBranchState;
+}
+
+declare module '__camelot-unchained/core/constants/baneBoonCategory' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    enum baneBoonCategory {
+        NONE = -1,
+        GENERAL = 1,
+        FACTION = 2,
+        RACE = 3,
+        ARCHETYPE = 4,
+    }
+    export default baneBoonCategory;
+}
+
+declare module '__camelot-unchained/core/config/configCategory' {
+    /**
+        * These are needed by the C++ Layer to know which build variables
+        * to send to the window.
+        */
+    enum configCategory {
+            KEYBIND_MOVEMENT = 0,
+            KEYBIND_COMBAT = 1,
+            KEYBIND_BUILDING = 3,
+            KEYBIND_INTERFACE = 4,
+            KEYBIND_UTILITY = 5,
+            AUDIO_PRIMARY = 6,
+            VIDEO_PRIMARY = 7,
+            GAME_PRIMARY = 8,
+    }
+    export default configCategory;
+}
+
+declare module '__camelot-unchained/core/config/ConfigVar' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    import configCategory from '__camelot-unchained/core/config/configCategory';
+    class ConfigVar {
+        id: number;
+        category: configCategory;
+        description: string;
+        value: any;
+        constructor(config?: ConfigVar);
+        create(): ConfigVar;
+    }
+    export default ConfigVar;
+}
+
+declare module '__camelot-unchained/core/config/dxKeyCodes' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    enum dxKeyCodes {
+        'ESCAPE' = 1,
+        ' 1 ' = 2,
+        ' 2 ' = 3,
+        ' 3 ' = 4,
+        ' 4 ' = 5,
+        ' 5 ' = 6,
+        ' 6 ' = 7,
+        ' 7 ' = 8,
+        ' 8 ' = 9,
+        ' 9 ' = 10,
+        ' 0 ' = 11,
+        '-' = 12,
+        '=' = 13,
+        'BACKSPACE' = 14,
+        'TAB' = 15,
+        'Q' = 16,
+        'W' = 17,
+        'E' = 18,
+        'R' = 19,
+        'T' = 20,
+        'Y' = 21,
+        'U' = 22,
+        'I' = 23,
+        'O' = 24,
+        'P' = 25,
+        '[' = 26,
+        ']' = 27,
+        'RETURN' = 28,
+        ' CONTROL' = 29,
+        'A' = 30,
+        'S' = 31,
+        'D' = 32,
+        'F' = 33,
+        'G' = 34,
+        'H' = 35,
+        'J' = 36,
+        'K' = 37,
+        'L' = 38,
+        ';' = 39,
+        ' \' ' = 40,
+        '`' = 41,
+        'SHIFT' = 42,
+        '\\' = 43,
+        'Z' = 44,
+        'X' = 45,
+        'C' = 46,
+        'V' = 47,
+        'B' = 48,
+        'N' = 49,
+        'M' = 50,
+        ',' = 51,
+        '.' = 52,
+        '/' = 53,
+        ' SHIFT' = 54,
+        '*' = 55,
+        ' ALT' = 56,
+        'SPACE' = 57,
+        'CAPSLCK' = 58,
+        'F1' = 59,
+        'F2' = 60,
+        'F3' = 61,
+        'F4' = 62,
+        'F5' = 63,
+        'F6' = 64,
+        'F7' = 65,
+        'F8' = 66,
+        'F9' = 67,
+        'F10' = 68,
+        'NUMLCK' = 69,
+        'SCRLCK' = 70,
+        'NUM7' = 71,
+        'NUM8' = 72,
+        'NUM9' = 73,
+        'NUM-' = 74,
+        'NUM4' = 75,
+        'NUM5' = 76,
+        'NUM6' = 77,
+        'NUM+' = 78,
+        'NUM1' = 79,
+        'NUM2' = 80,
+        'NUM3' = 81,
+        'NUM0' = 82,
+        'NUM.' = 83,
+        'OEM_102' = 86,
+        'F11' = 87,
+        'F12' = 88,
+        'F13' = 100,
+        'F14' = 101,
+        'F15' = 102,
+        'KANA' = 112,
+        'ABNT_C1' = 115,
+        'CONVERT' = 121,
+        'NOCONVERT' = 123,
+        'YEN' = 125,
+        'ABNT_C2' = 126,
+        'NUM=' = 141,
+        'PREVTRK' = 144,
+        '@' = 145,
+        ':' = 146,
+        '_' = 147,
+        'KANJI' = 148,
+        'STOP' = 149,
+        'AX' = 150,
+        'UNLABELED' = 151,
+        'NEXTTRK' = 153,
+        'NUMENTER' = 156,
+        'CONTROL' = 157,
+        'MUTE' = 160,
+        'CALC' = 161,
+        'PLAYE' = 162,
+        ' STOP' = 164,
+        'VOLDN' = 174,
+        'VOLUP' = 176,
+        'HOME' = 178,
+        'NUM,' = 179,
+        'NUM/' = 181,
+        'SYSRQ' = 183,
+        'RALT' = 184,
+        'PAUSE' = 197,
+        'HOME ' = 199,
+        'UP' = 200,
+        'PAGEUP' = 201,
+        'LEFT' = 203,
+        'RIGHT' = 205,
+        'END' = 207,
+        'DOWN' = 208,
+        'PAGEDN' = 209,
+        'INSERT' = 210,
+        'DELETE' = 211,
+        'LWIN' = 219,
+        'RWIN' = 220,
+        'APPS' = 221,
+        'POWER' = 222,
+        'SLEEP' = 223,
+        'WAKE' = 227,
+        'SEARCH' = 229,
+        'WEBFAV' = 230,
+        'REFRESH' = 231,
+        'WEBSTOP' = 232,
+        'WEBFWD' = 233,
+        'WEBBCK' = 234,
+        'MYCMPTR' = 235,
+        'MAIL' = 236,
+        'MEDIASLCT' = 237,
+    }
+    export default dxKeyCodes;
+}
+
+declare module '__camelot-unchained/core/config/jsKeyCodes' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    enum jsKeyCodes {
+        'BACKSPACE' = 8,
+        'TAB' = 9,
+        'ENTER' = 13,
+        'SHIFT' = 16,
+        'CTRL' = 17,
+        'ALT' = 18,
+        'PAUSE/BREAK' = 19,
+        'CAPSLOCK' = 20,
+        'ESC' = 27,
+        'SPACE' = 32,
+        'PAGEUP' = 33,
+        'PAGEDOWN' = 34,
+        'END' = 35,
+        'HOME' = 36,
+        'LEFT' = 37,
+        'UP' = 38,
+        'RIGHT' = 39,
+        'DOWN' = 40,
+        'INSERT' = 45,
+        'DELETE' = 46,
+        'ZERO' = 48,
+        'ONE' = 49,
+        'TWO' = 50,
+        'THREE' = 51,
+        'FOUR' = 52,
+        'FIVE' = 53,
+        'SIX' = 54,
+        'SEVEN' = 55,
+        'EIGHT' = 56,
+        'NINE' = 57,
+        'A' = 65,
+        'B' = 66,
+        'C' = 67,
+        'D' = 68,
+        'E' = 69,
+        'F' = 70,
+        'G' = 71,
+        'H' = 72,
+        'I' = 73,
+        'J' = 74,
+        'K' = 75,
+        'L' = 76,
+        'M' = 77,
+        'N' = 78,
+        'O' = 79,
+        'P' = 80,
+        'Q' = 81,
+        'R' = 82,
+        'S' = 83,
+        'T' = 84,
+        'U' = 85,
+        'V' = 86,
+        'W' = 87,
+        'X' = 88,
+        'Y' = 89,
+        'Z' = 90,
+        'WINDOWS' = 91,
+        'RIGHTCLICK' = 93,
+        'NUMPAD0' = 96,
+        'NUMPAD1' = 97,
+        'NUMPAD2' = 98,
+        'NUMPAD3' = 99,
+        'NUMPAD4' = 100,
+        'NUMPAD5' = 101,
+        'NUMPAD6' = 102,
+        'NUMPAD7' = 103,
+        'NUMPAD8' = 104,
+        'NUMPAD9' = 105,
+        'NUMPAD*' = 106,
+        'NUMPAD+' = 107,
+        'NUMPAD-' = 109,
+        'NUMPAD.' = 110,
+        'NUMPAD/' = 111,
+        'F1' = 112,
+        'F2' = 113,
+        'F3' = 114,
+        'F4' = 115,
+        'F5' = 116,
+        'F6' = 117,
+        'F7' = 118,
+        'F8' = 119,
+        'F9' = 120,
+        'F10' = 121,
+        'F11' = 122,
+        'F12' = 123,
+        'NUMLOCK' = 144,
+        'SCROLLLOCK' = 145,
+        'MYCOMPUTER' = 182,
+        'MYCALCULATOR' = 183,
+        ';' = 186,
+        '=' = 187,
+        ',' = 188,
+        '-' = 189,
+        '.' = 190,
+        '/' = 191,
+        '`' = 192,
+        '[' = 219,
+        '\\' = 220,
+        ']' = 221,
+        '\'' = 222,
+    }
+    export default jsKeyCodes;
+}
+
+declare module '__camelot-unchained/core/config/jsToDXKeyCodeMap' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    const jsToDXKeyCodeMap: {
+        8: number;
+        9: number;
+        13: number;
+        16: number;
+        17: number;
+        18: number;
+        19: number;
+        20: number;
+        27: number;
+        32: number;
+        33: number;
+        34: number;
+        35: number;
+        36: number;
+        37: number;
+        38: number;
+        39: number;
+        40: number;
+        45: number;
+        46: number;
+        48: number;
+        49: number;
+        50: number;
+        51: number;
+        52: number;
+        53: number;
+        54: number;
+        55: number;
+        56: number;
+        57: number;
+        65: number;
+        66: number;
+        67: number;
+        68: number;
+        69: number;
+        70: number;
+        71: number;
+        72: number;
+        73: number;
+        74: number;
+        75: number;
+        76: number;
+        77: number;
+        78: number;
+        79: number;
+        80: number;
+        81: number;
+        82: number;
+        83: number;
+        84: number;
+        85: number;
+        86: number;
+        87: number;
+        88: number;
+        89: number;
+        90: number;
+        91: number;
+        92: number;
+        96: number;
+        97: number;
+        98: number;
+        99: number;
+        100: number;
+        101: number;
+        102: number;
+        103: number;
+        104: number;
+        105: number;
+        106: number;
+        107: number;
+        109: number;
+        110: number;
+        111: number;
+        112: number;
+        113: number;
+        114: number;
+        115: number;
+        116: number;
+        117: number;
+        118: number;
+        119: number;
+        120: number;
+        121: number;
+        122: number;
+        123: number;
+        144: number;
+        145: number;
+        0xA6: number;
+        0xA7: number;
+        0xA8: number;
+        0xA9: number;
+        0xAA: number;
+        0xAB: number;
+        0xAC: number;
+        0xAD: number;
+        0xAE: number;
+        0xAF: number;
+        0xB0: number;
+        0xB1: number;
+        0xB2: number;
+        0xB3: number;
+        0xB4: number;
+        0xB5: number;
+        186: number;
+        187: number;
+        188: number;
+        189: number;
+        190: number;
+        191: number;
+        192: number;
+        219: number;
+        220: number;
+        221: number;
+        222: number;
+    };
+    export default jsToDXKeyCodeMap;
+}
+
+declare module '__camelot-unchained/core/config/KeyBind' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    import keyboardModifier from '__camelot-unchained/core/config/keyboardModifier';
+    class KeyBind {
+        primaryKeyCode: number;
+        primaryModifiers: keyboardModifier;
+        secondaryKeyCode: number;
+        secondaryModifiers: keyboardModifier;
+        default: number;
+        defaultModifiers: keyboardModifier;
+        primaryToString: () => string;
+        secondaryToString: () => string;
+    }
+    export default KeyBind;
+}
+
+declare module '__camelot-unchained/core/config/KeyBindConfigVar' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+<<<<<<< HEAD
     import * as React from 'react';
     export class WoundsProps {
         name: string;
@@ -1826,23 +2024,67 @@ declare module '__camelot-unchained/core/constants/abilityConstants/componentBra
         Disabled = 0,
         Open = 1,
         Slotted = 2,
+=======
+    import ConfigVar from '__camelot-unchained/core/config/ConfigVar';
+    import KeyBind from '__camelot-unchained/core/config/KeyBind';
+    class KeyBindConfigVar extends ConfigVar {
+        _value: KeyBind;
+        value: KeyBind;
+        constructor(config?: KeyBindConfigVar);
+        create(): KeyBindConfigVar;
+>>>>>>> 9476126... working on config stuff
     }
-    export default componentBranchState;
+    export default KeyBindConfigVar;
 }
 
-declare module '__camelot-unchained/core/constants/baneBoonCategory' {
+declare module '__camelot-unchained/core/config/keyboardModifier' {
     /**
       * This Source Code Form is subject to the terms of the Mozilla Public
       * License, v. 2.0. If a copy of the MPL was not distributed with this
       * file, You can obtain one at http://mozilla.org/MPL/2.0/.
       */
-    enum baneBoonCategory {
-        NONE = -1,
-        GENERAL = 1,
-        FACTION = 2,
-        RACE = 3,
-        ARCHETYPE = 4,
+    enum keyboardModifier {
+        NONE = 0,
+        CTRL = 1,
+        ALT = 2,
+        SHIFT = 4,
     }
-    export default baneBoonCategory;
+    export default keyboardModifier;
+}
+
+declare module '__camelot-unchained/core/config/AudioConfigVar' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    import ConfigVar from '__camelot-unchained/core/config/ConfigVar';
+    import { AudioSetting } from '__camelot-unchained/core/config/AudioSetting';
+    class AudioConfigVar extends ConfigVar {
+        _value: AudioSetting;
+        value: AudioSetting;
+        constructor(config?: AudioConfigVar);
+        create(): AudioConfigVar;
+    }
+    export default AudioConfigVar;
+}
+
+declare module '__camelot-unchained/core/config/AudioSetting' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    export enum AudioSettingType {
+        RANGE = 0,
+        BOOL = 1,
+    }
+    export class AudioSetting {
+        type: AudioSettingType;
+        default: any;
+        value: any;
+        min: any;
+        max: any;
+    }
 }
 

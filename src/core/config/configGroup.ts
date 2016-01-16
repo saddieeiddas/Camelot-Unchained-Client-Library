@@ -8,10 +8,10 @@
  * These are the tags needed by the C++ Layer to know which build variables
  * to send to the window.
  */
-enum tags {
+enum configGroup {
   KEYBIND = 2,
   INPUT = 6,
   AUDIO = 8,
 };
 
-export default tags;
+export default configGroup;

@@ -16,14 +16,10 @@ import abilityTags from './core/constants/abilityConstants/abilityTags';
 import archetype from './core/constants/archetype';
 import buildUIMode from './core/constants/buildUIMode';
 import channelId from './core/constants/channelId';
-import dxKeyCodes from './core/constants/dxKeyCodes';
 import emotes from './core/constants/emotes';
-import jsKeyCodes from './core/constants/jsKeyCodes';
-import jsToDXKeyCodeMap from './core/constants/jsToDXKeyCodeMap';
 import race from './core/constants/race';
 import soundEvents from './core/constants/soundEvents';
 import tagConstraintType from './core/constants/tagConstraintType';
-import tags from './core/constants/tags';
 import itemType from './core/constants/itemType';
 import gearSlot from './core/constants/gearSlot';
 
@@ -57,14 +53,10 @@ export {
   archetype,
   buildUIMode,
   channelId,
-  dxKeyCodes,
   emotes,
-  jsKeyCodes,
-  jsToDXKeyCodeMap,
   race,
   soundEvents,
   tagConstraintType,
-  tags,
   itemType,
   gearSlot,
 

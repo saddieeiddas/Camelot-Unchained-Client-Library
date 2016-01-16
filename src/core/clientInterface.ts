@@ -4,7 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-import tags from './constants/tags';
+import configGroup from './config/configGroup';
 import race from './constants/race';
 
 interface clientInterface {
@@ -108,11 +108,11 @@ interface clientInterface {
   OnConfigVarChanged(c: (isChangeSuccessful: boolean) => void): void;
   SaveConfigChanges(): void;
   OnSavedConfigChanges(c: () => void): void;
-  RestoreConfigDefaults(tag: tags): void;
+  RestoreConfigDefaults(tag: configGroup): void;
   ChangeConfigVar(variable: string, value: string): void;
   CancelChangeConfig(variable: string): void;
-  CancelAllConfigChanges(tag: tags): void;
-  GetConfigVars(tag: tags): void;
+  CancelAllConfigChanges(tag: configGroup): void;
+  GetConfigVars(tag: configGroup): void;
   GetConfigVar(variable: string): void;
 
   /* Building */

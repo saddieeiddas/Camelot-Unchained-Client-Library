@@ -17,6 +17,10 @@ declare var window: WindowInterface;
 
 let client: clientInterface = null;
 
+export function hasClientAPI() {
+  return (window.opener && window.opener.cuAPI) || window.cuAPI;
+}
+
 if (window.opener && window.opener.cuAPI) {
   client = window.opener.cuAPI; // bind the alias to parent (as this instance will only have basic cuAPI functions)
 } else if (window.cuAPI) {

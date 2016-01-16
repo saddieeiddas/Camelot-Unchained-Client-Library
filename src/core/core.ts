@@ -14,16 +14,15 @@ import announcementType from './constants/announcementType';
 import archetype from './constants/archetype';
 import buildUIMode from './constants/buildUIMode';
 import channelId from './constants/channelId';
-import dxKeyCodes from './constants/dxKeyCodes';
 import emotes from './constants/emotes';
-import jsKeyCodes from './constants/jsKeyCodes';
-import jsToDXKeyCodeMap from './constants/jsToDXKeyCodeMap';
 import race from './constants/race';
 import soundEvents from './constants/soundEvents';
 import tagConstraintType from './constants/tagConstraintType';
-import tags from './constants/tags';
 import itemType from './constants/itemType';
 import gearSlot from './constants/gearSlot';
+
+// config
+export * from './config/config';
 
 // classes
 import Ability from './classes/Ability';
@@ -50,14 +49,10 @@ export {
   archetype,
   buildUIMode,
   channelId,
-  dxKeyCodes,
   emotes,
-  jsKeyCodes,
-  jsToDXKeyCodeMap,
   race,
   soundEvents,
   tagConstraintType,
-  tags,
   itemType,
   gearSlot,
 
