@@ -4,17 +4,16 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-// remove this line when pushed to git
-
 /**
  * Materialize Button
  * Accepts custom components for button and list items
  */
 
 import * as React from 'react';
-import * as Underscore from 'underscore';
 
 // constants
+
+var qsDropDownId:number = 0;
 
 export class QuickSelectProps {
   label:any;
@@ -35,12 +34,11 @@ class QuickSelect extends React.Component<QuickSelectProps, QuickSelectState> {
     super(props);
   }
   componentWillMount(props: QuickSelectProps, state: QuickSelectState) {
-    this.setState({index: 0, uniqueId: Underscore.uniqueId('QS-Dropdown-')} as any);
+    this.setState({index: 0, uniqueId: 'QS-Dropdown-' + qsDropDownId++} as any);
   }
   handleItemOnClick(event: any, index: number, value: any) {
     this.setState({index: index, uniqueId: this.state.uniqueId} as any);
     
-    // We'll act like a real interface object and push our selected index and id upwards by a callback
     this.props.onSelect(index, value, this.state.uniqueId);
   }
   render() {
@@ -52,7 +50,12 @@ class QuickSelect extends React.Component<QuickSelectProps, QuickSelectState> {
         const item = this.props.list[i];
         const value = this.props.values[i];
         
-        dropDownOutput.push(<div key={i} onClick={(event:any) => this.handleItemOnClick(event, i, value)}><div className={'quickselect-auto-width ' + this.props.styleList}>{item}</div></div>);
+        dropDownOutput.push(
+          <div key={i} onClick={(event:any) => this.handleItemOnClick(event, i, value)}>
+            <div className={'quickselect-auto-width ' + this.props.styleList}>
+              {item}
+            </div>
+          </div>);
       }
     }
     
@@ -61,12 +64,10 @@ class QuickSelect extends React.Component<QuickSelectProps, QuickSelectState> {
     if (this.props.list[this.state.index]) {
       currentLabel = this.props.list[this.state.index];
     }
-      
+
     return(
       <div>
-        <div className={'quickselect-auto-width dropdown-button ' + this.props.styleButton} data-beloworigin='true' data-constrainwidth='false' data-verticaloffset='3' data-activates={this.state.uniqueId} data-style={'quickselect-default'}>
-          {currentLabel}
-        </div>
+        <div className={'quickselect-auto-width dropdown-button ' + this.props.styleButton} data-beloworigin='true' data-constrainwidth='false' data-verticaloffset='0' data-activates={this.state.uniqueId} data-style={'quickselect-default'}>{currentLabel}</div>
         <div id={this.state.uniqueId} className='quickselect-default'>
           {dropDownOutput}
         </div>
