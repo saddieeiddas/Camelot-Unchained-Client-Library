@@ -13,7 +13,7 @@ import * as React from 'react';
 
 // constants
 
-var qsDropDownId: number = 0;
+let qsDropDownId: number = 0;
 
 export class QuickSelectProps {
   label: any;
@@ -34,10 +34,10 @@ class QuickSelect extends React.Component<QuickSelectProps, QuickSelectState> {
     super(props);
   }
   componentWillMount(props: QuickSelectProps, state: QuickSelectState) {
-    this.setState({index: 0, uniqueId: 'QS-Dropdown-' + qsDropDownId++} as any);
+    this.setState({index: 0, uniqueId: 'QS-Dropdown-' + qsDropDownId++} as QuickSelectState);
   }
   handleItemOnClick(event: any, index: number, value: any) {
-    this.setState({index: index, uniqueId: this.state.uniqueId} as any);
+    this.setState({index: index, uniqueId: this.state.uniqueId} as QuickSelectState);
     
     this.props.onSelect(index, value, this.state.uniqueId);
   }
@@ -67,7 +67,9 @@ class QuickSelect extends React.Component<QuickSelectProps, QuickSelectState> {
 
     return(
       <div>
-        <div className={'dropdown-button quickselect-auto-width ' + this.props.styleButton} data-beloworigin='true' data-constrainwidth='false' data-verticaloffset='0' data-activates={this.state.uniqueId} data-style={'quickselect-default'}>{currentLabel}</div>
+        <div className={'dropdown-button quickselect-auto-width ' + this.props.styleButton} data-beloworigin='true' data-constrainwidth='false' data-verticaloffset='0' data-activates={this.state.uniqueId} data-style={'quickselect-default'}>
+          {currentLabel}
+        </div>
         <div id={this.state.uniqueId} className='quickselect-default'>
           {dropDownOutput}
         </div>
