@@ -13,15 +13,15 @@ import * as React from 'react';
 
 // constants
 
-var qsDropDownId:number = 0;
+var qsDropDownId: number = 0;
 
 export class QuickSelectProps {
-  label:any;
-  list:any[];
-  values:any[];
-  styleButton:any;
-  styleList:any;
-  onSelect:any;
+  label: any;
+  list: any[];
+  values: any[];
+  styleButton: any;
+  styleList: any;
+  onSelect: any;
 }
 
 export class QuickSelectState {
@@ -42,7 +42,7 @@ class QuickSelect extends React.Component<QuickSelectProps, QuickSelectState> {
     this.props.onSelect(index, value, this.state.uniqueId);
   }
   render() {
-    const dropDownOutput:any[] = [];
+    const dropDownOutput: any[] = [];
     
     //create list
     if(this.props.list.length === this.props.values.length && this.props.list.length > 0) {
@@ -51,7 +51,7 @@ class QuickSelect extends React.Component<QuickSelectProps, QuickSelectState> {
         const value = this.props.values[i];
         
         dropDownOutput.push(
-          <div key={i} onClick={(event:any) => this.handleItemOnClick(event, i, value)}>
+          <div key={i} onClick={(event: any) => this.handleItemOnClick(event, i, value)}>
             <div className={'quickselect-auto-width ' + this.props.styleList}>
               {item}
             </div>
