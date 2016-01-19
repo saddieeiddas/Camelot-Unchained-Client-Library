@@ -5,7 +5,7 @@
  */
 
 /**
- * Materialize Button
+ * Materialize Dropdown List
  * Accepts custom components for button and list items
  */
 
@@ -67,7 +67,7 @@ class QuickSelect extends React.Component<QuickSelectProps, QuickSelectState> {
 
     return(
       <div>
-        <div className={'quickselect-auto-width dropdown-button ' + this.props.styleButton} data-beloworigin='true' data-constrainwidth='false' data-verticaloffset='0' data-activates={this.state.uniqueId} data-style={'quickselect-default'}>{currentLabel}</div>
+        <div className={'dropdown-button quickselect-auto-width ' + this.props.styleButton} data-beloworigin='true' data-constrainwidth='false' data-verticaloffset='0' data-activates={this.state.uniqueId} data-style={'quickselect-default'}>{currentLabel}</div>
         <div id={this.state.uniqueId} className='quickselect-default'>
           {dropDownOutput}
         </div>
