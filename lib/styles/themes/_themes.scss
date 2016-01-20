@@ -4,11 +4,4 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-$cuStylesRoot: '../' !default;
-
-@import "../includes";
-
-@import "default/default";
-@import "buttons/_buttons";
-@import "basic-frame/basic-frame";
-@import "woundsframe/_woundsframe";
+@import "glass/_glass";

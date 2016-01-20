@@ -1335,38 +1335,38 @@ declare module '__camelot-unchained/stores/stores' {
     var _default: {
         AnnouncementsStore: {
             create(): {
-                store: any;
-                actions: {};
+                store: RefluxCore.Store;
+                actions: any;
             };
         };
         CharacterStore: {
             create(): {
-                store: any;
-                actions: {};
+                store: RefluxCore.Store;
+                actions: any;
             };
         };
         EnemyTargetStore: {
             create(): {
-                store: any;
-                actions: {};
+                store: RefluxCore.Store;
+                actions: any;
             };
         };
         FriendlyTargetStore: {
             create(): {
-                store: any;
-                actions: {};
+                store: RefluxCore.Store;
+                actions: any;
             };
         };
         ControlGameStore: {
             create(): {
-                store: any;
-                actions: {};
+                store: RefluxCore.Store;
+                actions: any;
             };
         };
         ControlGameScoreStore: {
             create(): {
-                store: any;
-                actions: {};
+                store: RefluxCore.Store;
+                actions: any;
             };
         };
     };
@@ -1375,6 +1375,7 @@ declare module '__camelot-unchained/stores/stores' {
 
 declare module '__camelot-unchained/components/components' {
     import WoundFrame from '__camelot-unchained/components/woundframe/WoundFrame';
+    import QuickSelect from '__camelot-unchained/components/quickselect/QuickSelect';
     var _default: {
         UnitFrame: __React.ClassicComponentClass<any>;
         Effects: __React.ClassicComponentClass<any>;
@@ -1391,6 +1392,7 @@ declare module '__camelot-unchained/components/components' {
         InjuryText: __React.ClassicComponentClass<any>;
         InjuryWounds: __React.ClassicComponentClass<any>;
         WoundFrame: typeof WoundFrame;
+        QuickSelect: typeof QuickSelect;
     };
     export default _default;
 }
@@ -1698,6 +1700,33 @@ declare module '__camelot-unchained/components/woundframe/WoundFrame' {
         render(): JSX.Element;
     }
     export default WoundFrame;
+}
+
+declare module '__camelot-unchained/components/quickselect/QuickSelect' {
+    /**
+        * Materialize Dropdown List
+        * Accepts custom components for button and list items
+        */
+    import * as React from 'react';
+    export class QuickSelectProps {
+            label: any;
+            list: any[];
+            values: any[];
+            styleButton: any;
+            styleList: any;
+            onSelect: any;
+    }
+    export class QuickSelectState {
+            uniqueId: string;
+            index: number;
+    }
+    class QuickSelect extends React.Component<QuickSelectProps, QuickSelectState> {
+            constructor(props: QuickSelectProps);
+            componentWillMount(props: QuickSelectProps, state: QuickSelectState): void;
+            handleItemOnClick(event: any, index: number, value: any): void;
+            render(): JSX.Element;
+    }
+    export default QuickSelect;
 }
 
 declare module '__camelot-unchained/core/constants/abilityConstants/componentType' {
