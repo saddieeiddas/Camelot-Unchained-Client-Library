@@ -289,3 +289,7 @@
 .cu-form-light {
   @include cu-form($background-color: $color-light, $text-color: $color-gray-dark, $light: true);
 }
+
+.cu-form-clickthrough {
+  pointer-events: none;
+}
