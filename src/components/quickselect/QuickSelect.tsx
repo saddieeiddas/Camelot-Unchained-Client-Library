@@ -5,73 +5,79 @@
  */
 
 /**
- * Materialize Dropdown List
- * Accepts custom components for button and list items
+ * Materialize dropdown inspired quickselect list.
+ * 
+ * *requires materialize js & css to be included on your html page.
+ * 
+ * USAGE:
+ * 
+ * class MyQuickSelect extends React.Component<any, any> {
+ *   generateActiveView = (item: any) => {
+ *     return <div>{item.foo}</div>;
+ *   }
+ *   generateListView = (item: any) => {
+ *     return <div>{item.foo}</div>;  
+ *   }
+ *   onSelectedItemChanged = (item: any) => {
+ *     console.log('selected item is ' + item.foo);
+ *   }
+ *   render() {
+ *     let items = [{foo:'Hello'},{foo:'World'}];
+ *     return <QuickSelect items={items} activeViewComponentGenerator={this.generateActiveView}
+          listViewComponentGenerator={this.generateListView} onSelectedItemChanged={this.onSelectedChannelChanged} />;
+ *   }
+ * }
+ * 
  */
 
 import * as React from 'react';
 
-// constants
-
-let qsDropDownId: number = 0;
-
-export class QuickSelectProps {
-  label: any;
-  list: any[];
-  values: any[];
-  styleButton: any;
-  styleList: any;
-  onSelect: any;
+export interface QuickSelectProps {
+  items: Array<any>;
+  activeViewComponentGenerator: (item: any) => any;
+  listViewComponentGenerator: (item: any) => any;
+  onSelectedItemChanged: (item: any) => void;
 }
 
-export class QuickSelectState {
-  uniqueId: string;
-  index: number;
+export interface QuickSelectState {
+  selectedIndex: number;
 }
 
 class QuickSelect extends React.Component<QuickSelectProps, QuickSelectState> {
+  private static idCounter: number = 0;
+  private uniqueId: string = 'QuickSelect-' + QuickSelect.idCounter++;
+  
   constructor(props: QuickSelectProps) {
     super(props);
+    this.state = {
+      selectedIndex: 0
+    };
   }
-  componentWillMount(props: QuickSelectProps, state: QuickSelectState) {
-    this.setState({index: 0, uniqueId: 'QS-Dropdown-' + qsDropDownId++} as QuickSelectState);
+  
+  onItemSelect = (item: any, itemIndex: number) => {
+    this.setState({selectedIndex: itemIndex});
+    this.props.onSelectedItemChanged(item);
   }
-  handleItemOnClick(event: any, index: number, value: any) {
-    this.setState({index: index, uniqueId: this.state.uniqueId} as QuickSelectState);
-    
-    this.props.onSelect(index, value, this.state.uniqueId);
+  
+  buildListItem = (item: any, itemIndex: number) => {
+    return (
+      <div key={itemIndex} onClick={this.onItemSelect.bind(this, item, itemIndex)} className='quickselect-auto-width'>
+        {this.props.listViewComponentGenerator(item)}
+      </div>
+    );
   }
-  render() {
-    const dropDownOutput: any[] = [];
-    
-    //create list
-    if(this.props.list.length === this.props.values.length && this.props.list.length > 0) {
-      for (let i = 0; i < this.props.list.length; i++) {
-        const item = this.props.list[i];
-        const value = this.props.values[i];
-        
-        dropDownOutput.push(
-          <div key={i} onClick={(event: any) => this.handleItemOnClick(event, i, value)}>
-            <div className={'quickselect-auto-width ' + this.props.styleList}>
-              {item}
-            </div>
-          </div>);
-      }
-    }
-    
-    // Draw the selected item
-    var currentLabel = this.props.label;
-    if (this.props.list[this.state.index]) {
-      currentLabel = this.props.list[this.state.index];
-    }
 
+  render() {
+    if (this.props.items.length == 0) return <div>No Elements</div>;
     return(
       <div>
-        <div className={'dropdown-button quickselect-auto-width ' + this.props.styleButton} data-beloworigin='true' data-constrainwidth='false' data-verticaloffset='0' data-activates={this.state.uniqueId} data-style={'quickselect-default'}>
-          {currentLabel}
+        <div className={'dropdown-button quickselect-auto-width'} data-beloworigin='true'
+          data-constrainwidth='false' data-verticaloffset='0' data-activates={this.uniqueId}
+          data-style={'quickselect-default'}>
+          {this.props.activeViewComponentGenerator(this.props.items[this.state.selectedIndex])}
         </div>
-        <div id={this.state.uniqueId} className='quickselect-default'>
-          {dropDownOutput}
+        <div id={this.uniqueId} className='quickselect-default'>
+          {this.props.items.map(this.buildListItem)}
         </div>
       </div>
     );

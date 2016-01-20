@@ -1704,26 +1704,44 @@ declare module '__camelot-unchained/components/woundframe/WoundFrame' {
 
 declare module '__camelot-unchained/components/quickselect/QuickSelect' {
     /**
-        * Materialize Dropdown List
-        * Accepts custom components for button and list items
+        * Materialize dropdown inspired quickselect list.
+        *
+        * *requires materialize js & css to be included on your html page.
+        *
+        * USAGE:
+        *
+        * class MyQuickSelect extends React.Component<any, any> {
+        *   generateActiveView = (item: any) => {
+        *     return <div>{item.foo}</div>;
+        *   }
+        *   generateListView = (item: any) => {
+        *     return <div>{item.foo}</div>;
+        *   }
+        *   onSelectedItemChanged = (item: any) => {
+        *     console.log('selected item is ' + item.foo);
+        *   }
+        *   render() {
+        *     let items = [{foo:'Hello'},{foo:'World'}];
+        *     return <QuickSelect items={items} activeViewComponentGenerator={this.generateActiveView}
+                        listViewComponentGenerator={this.generateListView} onSelectedItemChanged={this.onSelectedChannelChanged} />;
+        *   }
+        * }
+        *
         */
     import * as React from 'react';
-    export class QuickSelectProps {
-            label: any;
-            list: any[];
-            values: any[];
-            styleButton: any;
-            styleList: any;
-            onSelect: any;
+    export interface QuickSelectProps {
+            items: Array<any>;
+            activeViewComponentGenerator: (item: any) => any;
+            listViewComponentGenerator: (item: any) => any;
+            onSelectedItemChanged: (item: any) => void;
     }
-    export class QuickSelectState {
-            uniqueId: string;
-            index: number;
+    export interface QuickSelectState {
+            selectedIndex: number;
     }
     class QuickSelect extends React.Component<QuickSelectProps, QuickSelectState> {
             constructor(props: QuickSelectProps);
-            componentWillMount(props: QuickSelectProps, state: QuickSelectState): void;
-            handleItemOnClick(event: any, index: number, value: any): void;
+            onItemSelect: (item: any, itemIndex: number) => void;
+            buildListItem: (item: any, itemIndex: number) => JSX.Element;
             render(): JSX.Element;
     }
     export default QuickSelect;
