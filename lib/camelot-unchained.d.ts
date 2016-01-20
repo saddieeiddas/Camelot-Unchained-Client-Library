@@ -1335,38 +1335,38 @@ declare module '__camelot-unchained/stores/stores' {
     var _default: {
         AnnouncementsStore: {
             create(): {
-                store: RefluxCore.Store;
-                actions: any;
+                store: any;
+                actions: {};
             };
         };
         CharacterStore: {
             create(): {
-                store: RefluxCore.Store;
-                actions: any;
+                store: any;
+                actions: {};
             };
         };
         EnemyTargetStore: {
             create(): {
-                store: RefluxCore.Store;
-                actions: any;
+                store: any;
+                actions: {};
             };
         };
         FriendlyTargetStore: {
             create(): {
-                store: RefluxCore.Store;
-                actions: any;
+                store: any;
+                actions: {};
             };
         };
         ControlGameStore: {
             create(): {
-                store: RefluxCore.Store;
-                actions: any;
+                store: any;
+                actions: {};
             };
         };
         ControlGameScoreStore: {
             create(): {
-                store: RefluxCore.Store;
-                actions: any;
+                store: any;
+                actions: {};
             };
         };
     };
