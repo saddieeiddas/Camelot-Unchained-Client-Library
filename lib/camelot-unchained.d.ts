@@ -966,6 +966,7 @@ declare module '__camelot-unchained/stores/stores' {
 declare module '__camelot-unchained/components/components' {
     import WoundFrame from '__camelot-unchained/components/woundframe/WoundFrame';
     import QuickSelect from '__camelot-unchained/components/quickselect/QuickSelect';
+    import Animate from '__camelot-unchained/components/Animate';
     var _default: {
         UnitFrame: __React.ClassicComponentClass<any>;
         Effects: __React.ClassicComponentClass<any>;
@@ -983,6 +984,7 @@ declare module '__camelot-unchained/components/components' {
         InjuryWounds: __React.ClassicComponentClass<any>;
         WoundFrame: typeof WoundFrame;
         QuickSelect: typeof QuickSelect;
+        Animate: typeof Animate;
     };
     export default _default;
 }
@@ -1323,6 +1325,67 @@ declare module '__camelot-unchained/components/woundframe/WoundFrame' {
         render(): JSX.Element;
     }
     export default WoundFrame;
+}
+
+declare module '__camelot-unchained/components/quickselect/QuickSelect' {
+    /**
+        * Materialize dropdown inspired quickselect list.
+        *
+        * *requires materialize js & css to be included on your html page.
+        *
+        * USAGE:
+        *
+        * class MyQuickSelect extends React.Component<any, any> {
+        *   generateActiveView = (item: any) => {
+        *     return <div>{item.foo}</div>;
+        *   }
+        *   generateListView = (item: any) => {
+        *     return <div>{item.foo}</div>;
+        *   }
+        *   onSelectedItemChanged = (item: any) => {
+        *     console.log('selected item is ' + item.foo);
+        *   }
+        *   render() {
+        *     let items = [{foo:'Hello'},{foo:'World'}];
+        *     return <QuickSelect items={items} activeViewComponentGenerator={this.generateActiveView}
+                        listViewComponentGenerator={this.generateListView} onSelectedItemChanged={this.onSelectedChannelChanged} />;
+        *   }
+        * }
+        *
+        */
+    import * as React from 'react';
+    export interface QuickSelectProps {
+            items: Array<any>;
+            activeViewComponentGenerator: (item: any) => any;
+            listViewComponentGenerator: (item: any) => any;
+            onSelectedItemChanged: (item: any) => void;
+    }
+    export interface QuickSelectState {
+            selectedIndex: number;
+    }
+    class QuickSelect extends React.Component<QuickSelectProps, QuickSelectState> {
+            constructor(props: QuickSelectProps);
+            onItemSelect: (item: any, itemIndex: number) => void;
+            buildListItem: (item: any, itemIndex: number) => JSX.Element;
+            render(): JSX.Element;
+    }
+    export default QuickSelect;
+}
+
+declare module '__camelot-unchained/components/Animate' {
+    import * as React from 'react';
+    class Animate extends React.Component<any, any> {
+        constructor(props: any);
+        static propTypes: {
+            animationEnter: React.Validator<any>;
+            animationLeave: React.Validator<any>;
+            durationEnter: React.Validator<any>;
+            durationLeave: React.Validator<any>;
+        };
+        renderStyle: (animationEnter: string, animationLeave: string, durationEnter: number, durationLeave: number) => string;
+        render(): JSX.Element;
+    }
+    export default Animate;
 }
 
 declare module '__camelot-unchained/core/constants/abilityConstants/componentType' {
@@ -1877,154 +1940,6 @@ declare module '__camelot-unchained/core/config/KeyBindConfigVar' {
       * License, v. 2.0. If a copy of the MPL was not distributed with this
       * file, You can obtain one at http://mozilla.org/MPL/2.0/.
       */
-<<<<<<< HEAD
-    import * as React from 'react';
-    export class WoundsProps {
-        name: string;
-        injuries: any[];
-        health: number;
-        healthMax: number;
-        stamina: number;
-        staminaMax: number;
-        panic: number;
-        panicMax: number;
-        temp: number;
-        tempMax: number;
-    }
-    export class WoundsState {
-    }
-    class WoundFrame extends React.Component<WoundsProps, WoundsState> {
-        constructor(props: WoundsProps);
-        render(): JSX.Element;
-    }
-    export default WoundFrame;
-}
-
-declare module '__camelot-unchained/components/quickselect/QuickSelect' {
-    /**
-        * Materialize dropdown inspired quickselect list.
-        *
-        * *requires materialize js & css to be included on your html page.
-        *
-        * USAGE:
-        *
-        * class MyQuickSelect extends React.Component<any, any> {
-        *   generateActiveView = (item: any) => {
-        *     return <div>{item.foo}</div>;
-        *   }
-        *   generateListView = (item: any) => {
-        *     return <div>{item.foo}</div>;
-        *   }
-        *   onSelectedItemChanged = (item: any) => {
-        *     console.log('selected item is ' + item.foo);
-        *   }
-        *   render() {
-        *     let items = [{foo:'Hello'},{foo:'World'}];
-        *     return <QuickSelect items={items} activeViewComponentGenerator={this.generateActiveView}
-                        listViewComponentGenerator={this.generateListView} onSelectedItemChanged={this.onSelectedChannelChanged} />;
-        *   }
-        * }
-        *
-        */
-    import * as React from 'react';
-    export interface QuickSelectProps {
-            items: Array<any>;
-            activeViewComponentGenerator: (item: any) => any;
-            listViewComponentGenerator: (item: any) => any;
-            onSelectedItemChanged: (item: any) => void;
-    }
-    export interface QuickSelectState {
-            selectedIndex: number;
-    }
-    class QuickSelect extends React.Component<QuickSelectProps, QuickSelectState> {
-            constructor(props: QuickSelectProps);
-            onItemSelect: (item: any, itemIndex: number) => void;
-            buildListItem: (item: any, itemIndex: number) => JSX.Element;
-            render(): JSX.Element;
-    }
-    export default QuickSelect;
-}
-
-declare module '__camelot-unchained/core/constants/abilityConstants/componentType' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http//mozilla.org/MPL/2.0/.
-      */
-    export enum componentType {
-        Primary = 0,
-        Secondary = 1,
-        OptionalModifier = 2,
-        SpecialModal = 3,
-        IndependantModal = 4,
-    }
-    export default componentType;
-}
-
-declare module '__camelot-unchained/core/constants/abilityConstants/componentPath' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http//mozilla.org/MPL/2.0/.
-      */
-    export enum componentPath {
-        'Path 1' = 0,
-        'Path 2' = 1,
-        'Path 3' = 2,
-        'Path 4' = 3,
-    }
-    export default componentPath;
-}
-
-declare module '__camelot-unchained/core/constants/abilityConstants/componentSubType' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http//mozilla.org/MPL/2.0/.
-      */
-    export enum componentSubType {
-        None = 0,
-        Rune = 1,
-        Shape = 2,
-        Range = 4,
-        Size = 8,
-        Infusion = 16,
-        Focus = 32,
-        Transposition = 64,
-        Weapon = 128,
-        Style = 256,
-        Speed = 512,
-        Potential = 1024,
-        Target = 2048,
-        Stance = 4096,
-        RangedWeapon = 8192,
-        Load = 16384,
-        Prepare = 32768,
-        Draw = 65536,
-        Aim = 131072,
-        Voice = 262144,
-        Instrument = 524288,
-        Shout = 1048576,
-        Song = 2097152,
-        Inflection = 4194304,
-        Technique = 8388608,
-        DeadPrimary = 16777216,
-        DeadSecondary = 33554432,
-    }
-    export default componentSubType;
-}
-
-declare module '__camelot-unchained/core/constants/abilityConstants/componentBranchState' {
-    /**
-      * This Source Code Form is subject to the terms of the Mozilla Public
-      * License, v. 2.0. If a copy of the MPL was not distributed with this
-      * file, You can obtain one at http//mozilla.org/MPL/2.0/.
-      */
-    export enum componentBranchState {
-        Disabled = 0,
-        Open = 1,
-        Slotted = 2,
-=======
     import ConfigVar from '__camelot-unchained/core/config/ConfigVar';
     import KeyBind from '__camelot-unchained/core/config/KeyBind';
     class KeyBindConfigVar extends ConfigVar {
@@ -2032,7 +1947,6 @@ declare module '__camelot-unchained/core/constants/abilityConstants/componentBra
         value: KeyBind;
         constructor(config?: KeyBindConfigVar);
         create(): KeyBindConfigVar;
->>>>>>> 9476126... working on config stuff
     }
     export default KeyBindConfigVar;
 }

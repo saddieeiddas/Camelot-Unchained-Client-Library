@@ -28,6 +28,8 @@ import WoundFrame from './woundframe/WoundFrame';
 // Non-frame components
 import QuickSelect from './quickselect/QuickSelect';
 
+import Animate from './Animate';
+
 export default {
   UnitFrame,
   Effects,
@@ -47,4 +49,6 @@ export default {
   WoundFrame,
   
   QuickSelect,
+  
+  Animate,
 }
