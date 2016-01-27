@@ -4,7 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-import {fetch} from 'isomorphic-fetch';
+import 'isomorphic-fetch';
 import {Promise} from 'es6-promise';
 
 import CoreSettings from '../core/CoreSettings';
