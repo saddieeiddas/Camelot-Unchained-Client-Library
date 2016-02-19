@@ -99,6 +99,22 @@ export function getJSON(endpoint: string, useHttps: boolean = false, query: any 
     .then(parseJSON);
 }
 
+// old API requires loginToken to be in the data object
+export function postJSON(endpoint: string, useHttps: boolean = false, requireAuth: boolean = false, data: any = {}, version: number = 1): Promise<any> {
+  return fetch(makeAPIUrl(endpoint, useHttps), {
+    method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'api-version': `${version}`,
+      'loginToken': client.loginToken
+    },
+    body: JSON.stringify(data)
+  })
+  .then(checkStatus)
+  .then(parseJSON);
+}
+
 export function getFactions() {
   return getJSON('game/factions');
 }
