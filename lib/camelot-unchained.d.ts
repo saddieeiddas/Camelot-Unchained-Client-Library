@@ -31,11 +31,14 @@ declare module 'camelot-unchained' {
     import Inventory from '__camelot-unchained/core/classes/Inventory';
     import Item from '__camelot-unchained/core/classes/Item';
     import EquippedGear from '__camelot-unchained/core/classes/EquippedGear';
+    import LogMessage from '__camelot-unchained/core/classes/LogMessage';
+    import ChatMessage from '__camelot-unchained/core/classes/ChatMessage';
+    import ConsoleMessage from '__camelot-unchained/core/classes/ConsoleMessage';
     import * as core from '__camelot-unchained/core/core';
     import events from '__camelot-unchained/events/events';
     import stores from '__camelot-unchained/stores/stores';
     import components from '__camelot-unchained/components/components';
-    export { CoreSettings, clientInterface, client, abilityTags, archetype, buildUIMode, channelId, emotes, race, soundEvents, tagConstraintType, itemType, gearSlot, Ability, Combatant, Player, Character, ControlGame, Injury, Population, Inventory, Item, EquippedGear, core, events, stores, components };
+    export { CoreSettings, clientInterface, client, abilityTags, archetype, buildUIMode, channelId, emotes, race, soundEvents, tagConstraintType, itemType, gearSlot, Ability, Combatant, Player, Character, ControlGame, Injury, Population, Inventory, Item, EquippedGear, LogMessage, ChatMessage, ConsoleMessage, core, events, stores, components };
 }
 
 declare module '__camelot-unchained/core/CoreSettings' {
@@ -169,15 +172,18 @@ declare module '__camelot-unchained/core/clientInterface' {
         OnCharacterHealthChanged(c: (health: number, maxHealth: number) => void): void;
         OnCharacterStaminaChanged(c: (stamina: number, maxStamina: number) => void): void;
         OnCharacterEffectsChanged(c: (effects: string) => void): void;
+        OnCharacterInjuriesChanged(c: (part: number, health: number, maxHealth: number, wounds: number) => void): void;
         Emote(emote: number): void;
         OnEnemyTargetNameChanged(callback: (name: string) => void): void;
         OnEnemyTargetHealthChanged(callback: (health: number, maxHealth: number) => void): void;
         OnEnemyTargetStaminaChanged(callback: (stamina: number, maxStamina: number) => void): void;
         OnEnemyTargetEffectsChanged(callback: (effects: string) => void): void;
+        OnEnemyTargetInjuriesChanged(c: (part: number, health: number, maxHealth: number, wounds: number) => void): void;
         OnFriendlyTargetNameChanged(callback: (name: string) => void): void;
         OnFriendlyTargetHealthChanged(callback: (health: number, maxHealth: number) => void): void;
         OnFriendlyTargetStaminaChanged(callback: (stamina: number, maxStamina: number) => void): void;
         OnFriendlyTargetEffectsChanged(callback: (effects: string) => void): void;
+        OnFriendlyTargetInjuriesChanged(c: (part: number, health: number, maxHealth: number, wounds: number) => void): void;
         OnBeginChat(c: (commandMode: number, text: string) => void): void;
         OnChat(c: (type: number, from: string, body: string, nick: string, iscse: boolean) => void): void;
         SendChat(type: number, to: string, body: string): void;
@@ -858,6 +864,57 @@ declare module '__camelot-unchained/core/classes/EquippedGear' {
     export default EquippedGear;
 }
 
+declare module '__camelot-unchained/core/classes/LogMessage' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    class LogMessage {
+        category: string;
+        level: number;
+        time: string;
+        process: number;
+        thread: number;
+        message: string;
+        constructor(logMessage?: LogMessage);
+        static create(): LogMessage;
+    }
+    export default LogMessage;
+}
+
+declare module '__camelot-unchained/core/classes/ChatMessage' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    class ChatMessage {
+        type: number;
+        from: string;
+        body: string;
+        nick: string;
+        iscse: boolean;
+        constructor(chatMessage?: ChatMessage);
+        static create(): ChatMessage;
+    }
+    export default ChatMessage;
+}
+
+declare module '__camelot-unchained/core/classes/ConsoleMessage' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    class ConsoleMessage {
+        text: string;
+        constructor(consoleMessage?: ConsoleMessage);
+        static create(): ConsoleMessage;
+    }
+    export default ConsoleMessage;
+}
+
 declare module '__camelot-unchained/core/core' {
     /**
       * This Source Code Form is subject to the terms of the Mozilla Public
@@ -890,11 +947,15 @@ declare module '__camelot-unchained/core/core' {
     import Inventory from '__camelot-unchained/core/classes/Inventory';
     import Item from '__camelot-unchained/core/classes/Item';
     import EquippedGear from '__camelot-unchained/core/classes/EquippedGear';
-    export { CoreSettings, clientInterface, client, abilityTags, announcementType, archetype, buildUIMode, channelId, emotes, race, soundEvents, tagConstraintType, itemType, gearSlot, Ability, Announcement, Combatant, Player, Character, ControlGame, Injury, Population, Inventory, Item, EquippedGear };
+    import LogMessage from '__camelot-unchained/core/classes/LogMessage';
+    import ChatMessage from '__camelot-unchained/core/classes/ChatMessage';
+    import ConsoleMessage from '__camelot-unchained/core/classes/ConsoleMessage';
+    export { CoreSettings, clientInterface, client, abilityTags, announcementType, archetype, buildUIMode, channelId, emotes, race, soundEvents, tagConstraintType, itemType, gearSlot, Ability, Announcement, Combatant, Player, Character, ControlGame, Injury, Population, Inventory, Item, EquippedGear, LogMessage, ChatMessage, ConsoleMessage };
 }
 
 declare module '__camelot-unchained/events/events' {
     import HandlesAnnouncements from '__camelot-unchained/events/classes/HandlesAnnouncements';
+    import HandlesBeginChat from '__camelot-unchained/events/classes/HandlesBeginChat';
     import HandlesChat from '__camelot-unchained/events/classes/HandlesChat';
     import HandlesCharacter from '__camelot-unchained/events/classes/HandlesCharacter';
     import HandlesEnemyTarget from '__camelot-unchained/events/classes/HandlesEnemyTarget';
@@ -903,8 +964,11 @@ declare module '__camelot-unchained/events/events' {
     import HandlesControlGameScore from '__camelot-unchained/events/classes/HandlesControlGameScore';
     import HandlesInventory from '__camelot-unchained/events/classes/HandlesInventory';
     import HandlesEquippedGear from '__camelot-unchained/events/classes/HandlesEquippedGear';
+    import HandlesConsole from '__camelot-unchained/events/classes/HandlesConsole';
+    import HandlesLogging from '__camelot-unchained/events/classes/HandlesLogging';
     var _default: {
         handlesAnnouncements: HandlesAnnouncements;
+        handlesBeginChat: HandlesBeginChat;
         handlesChat: HandlesChat;
         handlesCharacter: HandlesCharacter;
         handlesEnemyTarget: HandlesEnemyTarget;
@@ -913,6 +977,8 @@ declare module '__camelot-unchained/events/events' {
         handlesControlGameScore: HandlesControlGameScore;
         handlesInventory: HandlesInventory;
         handlesEquippedGear: HandlesEquippedGear;
+        handlesConsole: HandlesConsole;
+        handlesLogging: HandlesLogging;
         on: (topic: string, callback: (info: any) => void) => any;
         off: (listener: any) => void;
         addListener: (topic: string, callback: (info: any) => void) => void;
@@ -1211,6 +1277,17 @@ declare module '__camelot-unchained/events/classes/HandlesAnnouncements' {
     }
 }
 
+declare module '__camelot-unchained/events/classes/HandlesBeginChat' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    export default class HandlesBeginChat {
+        topic: string;
+    }
+}
+
 declare module '__camelot-unchained/events/classes/HandlesChat' {
     /**
       * This Source Code Form is subject to the terms of the Mozilla Public
@@ -1295,6 +1372,28 @@ declare module '__camelot-unchained/events/classes/HandlesEquippedGear' {
       * file, You can obtain one at http://mozilla.org/MPL/2.0/.
       */
     export default class HandlesEquippedGear {
+        topic: string;
+    }
+}
+
+declare module '__camelot-unchained/events/classes/HandlesConsole' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    export default class HandlesConsole {
+        topic: string;
+    }
+}
+
+declare module '__camelot-unchained/events/classes/HandlesLogging' {
+    /**
+      * This Source Code Form is subject to the terms of the Mozilla Public
+      * License, v. 2.0. If a copy of the MPL was not distributed with this
+      * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+      */
+    export default class HandlesLogging {
         topic: string;
     }
 }

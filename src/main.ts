@@ -34,6 +34,9 @@ import Population from './core/classes/Population';
 import Inventory from './core/classes/Inventory';
 import Item from './core/classes/Item';
 import EquippedGear from './core/classes/EquippedGear';
+import LogMessage from './core/classes/LogMessage';
+import ChatMessage from './core/classes/ChatMessage';
+import ConsoleMessage from './core/classes/ConsoleMessage';
 
 // libraries
 import * as core from './core/core';
@@ -71,6 +74,9 @@ export {
   Inventory,
   Item,
   EquippedGear,
+  LogMessage,
+  ChatMessage,
+  ConsoleMessage,
 
   // libraries
   core,

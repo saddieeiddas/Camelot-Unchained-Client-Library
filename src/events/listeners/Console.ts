@@ -5,23 +5,21 @@
  */
 
 import EventEmitter from '../classes/EventEmitter';
-import HandlesAnnouncements from '../classes/HandlesAnnouncements';
+import HandlesConsole from '../classes/HandlesConsole';
+import ConsoleMessage from '../../core/classes/ConsoleMessage';
 import client from '../../core/client';
 
 function run(emitter: EventEmitter, topic: string) {
-  client.OnAnnouncement((message: string, type: number) => {
-    emitter.emit(topic, {
-      message: message,
-      type: type
-    });
+  client.OnConsoleText((text: string) => {
+    emitter.emit(topic, new ConsoleMessage({text: text}));
   });
 }
 
-export default class AnnouncementsListener {
+export default class ConsoleListener {
   listening: boolean = false;
   type: string;
-  handles: HandlesAnnouncements;
-  constructor(handles: HandlesAnnouncements) {
+  handles: HandlesConsole;
+  constructor(handles: HandlesConsole) {
     this.handles = handles;
   }
   start(emitter: EventEmitter): void {

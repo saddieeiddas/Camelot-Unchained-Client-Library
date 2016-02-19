@@ -8,7 +8,7 @@ import EventEmitter from '../classes/EventEmitter';
 import Combatant from '../../core/classes/Combatant';
 import Player from '../../core/classes/Player';
 import race from '../../core/constants/race';
-declare const cuAPI: any;
+import client from '../../core/client';
 
 function run(emitter: EventEmitter, topic: string) {
   const info: any = {};
@@ -49,25 +49,25 @@ function run(emitter: EventEmitter, topic: string) {
   switch (topic) {
     case 'character':
       instance = new Player(<Player>{});
-      cuAPI.OnCharacterNameChanged(nameChanged);
-      cuAPI.OnCharacterRaceChanged(raceChanged);
-      cuAPI.OnCharacterHealthChanged(healthChanged);
-      cuAPI.OnCharacterStaminaChanged(staminaChanged);
-      cuAPI.OnCharacterInjuriesChanged(injuriesChanged);
+      client.OnCharacterNameChanged(nameChanged);
+      client.OnCharacterRaceChanged(raceChanged);
+      client.OnCharacterHealthChanged(healthChanged);
+      client.OnCharacterStaminaChanged(staminaChanged);
+      client.OnCharacterInjuriesChanged(injuriesChanged);
       break;
     case 'enemytarget':
       instance = new Combatant(<Combatant>{});
-      cuAPI.OnEnemyTargetNameChanged(nameChanged);
-      cuAPI.OnEnemyTargetHealthChanged(healthChanged);
-      cuAPI.OnEnemyTargetStaminaChanged(staminaChanged);
-      cuAPI.OnEnemyTargetInjuriesChanged(injuriesChanged);
+      client.OnEnemyTargetNameChanged(nameChanged);
+      client.OnEnemyTargetHealthChanged(healthChanged);
+      client.OnEnemyTargetStaminaChanged(staminaChanged);
+      client.OnEnemyTargetInjuriesChanged(injuriesChanged);
       break;
     case 'friendlytarget':
       instance = new Combatant(<Combatant>{});
-      cuAPI.OnFriendlyTargetNameChanged(nameChanged);
-      cuAPI.OnFriendlyTargetHealthChanged(healthChanged);
-      cuAPI.OnFriendlyTargetStaminaChanged(staminaChanged);
-      cuAPI.OnFriendlyTargetInjuriesChanged(injuriesChanged);
+      client.OnFriendlyTargetNameChanged(nameChanged);
+      client.OnFriendlyTargetHealthChanged(healthChanged);
+      client.OnFriendlyTargetStaminaChanged(staminaChanged);
+      client.OnFriendlyTargetInjuriesChanged(injuriesChanged);
       break;
   }
 }
