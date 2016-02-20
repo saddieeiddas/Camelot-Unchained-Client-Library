@@ -3,9 +3,11 @@
         "target": "es6",
         "noImplicitAny": true,
         "removeComments": false,
-        "outDir": "./tmp",
+        "outDir": "./lib",
         "sourceMap": false,
-        "jsx": "react"
+        "jsx": "react",
+        "module": "commonjs",
+        "declaration": true
     },
     "formatCodeOptions": {
         "indentSize": 2,
@@ -27,7 +29,16 @@
         "./src/**/*.ts",
         "./src/**/*.tsx"
     ],
-    "files": [],
+    "exclude": [
+      "typings/browser.d.ts",
+      "typings/browser",
+      "lib",
+      "dist",
+      "tmp",
+      "publish",
+      "node_modules",
+      "**/third-party/**"
+    ],
     "atom": {
         "rewriteTsconfig": false
     }

@@ -1,0 +1,23 @@
+import WoundFrame from './woundframe/WoundFrame';
+import QuickSelect from './quickselect/QuickSelect';
+import Animate from './Animate';
+declare var _default: {
+    UnitFrame: __React.ClassicComponentClass<any>;
+    Effects: __React.ClassicComponentClass<any>;
+    HealthBar: __React.ClassicComponentClass<any>;
+    HealthText: __React.ClassicComponentClass<any>;
+    Name: __React.ClassicComponentClass<any>;
+    Portrait: __React.ClassicComponentClass<any>;
+    StaminaBar: __React.ClassicComponentClass<any>;
+    StaminaText: __React.ClassicComponentClass<any>;
+    Injuries: __React.ClassicComponentClass<any>;
+    Injury: __React.ClassicComponentClass<any>;
+    InjuryLocation: __React.ClassicComponentClass<any>;
+    InjuryBar: __React.ClassicComponentClass<any>;
+    InjuryText: __React.ClassicComponentClass<any>;
+    InjuryWounds: __React.ClassicComponentClass<any>;
+    WoundFrame: typeof WoundFrame;
+    QuickSelect: typeof QuickSelect;
+    Animate: typeof Animate;
+};
+export default _default;

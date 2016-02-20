@@ -9,6 +9,6 @@ npm-debug.log
 /dist
 /publish
 /.vs
-/definitions
 *.csproj
 /lib
+/typings

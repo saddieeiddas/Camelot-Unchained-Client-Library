@@ -91,6 +91,7 @@ function makeQueryString(url: string, params: any = {}): string {
   if (qs.length) {
     url += "?" + qs.join("&");
   }
+  return url;
 }
 
 export function getJSON(endpoint: string, useHttps: boolean = false, query: any = {}): Promise<any> {
