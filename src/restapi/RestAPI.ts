@@ -169,3 +169,7 @@ export function getAllRaces() {
 export function getAllFactions() {
   return getJSON('game/factions');
 }
+
+export function postPlotPermissions(query: Object) {
+  return postJSON('plot/modifypermissions', true, false, query);
+}

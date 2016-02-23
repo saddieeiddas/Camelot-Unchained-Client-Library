@@ -22,6 +22,7 @@ import soundEvents from './core/constants/soundEvents';
 import tagConstraintType from './core/constants/tagConstraintType';
 import itemType from './core/constants/itemType';
 import gearSlot from './core/constants/gearSlot';
+import plotPermissions from './core/constants/plotPermissions';
 
 // classes
 import Ability from './core/classes/Ability';
@@ -44,6 +45,9 @@ import events from './events/events';
 import stores from './stores/stores';
 import components from './components/components';
 
+// RestAPI
+import {postPlotPermissions} from './restapi/RestAPI';
+
 export {
 
   // core
@@ -62,6 +66,7 @@ export {
   tagConstraintType,
   itemType,
   gearSlot,
+  plotPermissions,
 
   // core classes
   Ability,
@@ -83,4 +88,7 @@ export {
   events,
   stores,
   components,
+
+  // RestAPI
+  postPlotPermissions,
 }

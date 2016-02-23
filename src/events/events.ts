@@ -18,6 +18,7 @@ import HandlesInventory from './classes/HandlesInventory';
 import HandlesEquippedGear from './classes/HandlesEquippedGear';
 import HandlesConsole from './classes/HandlesConsole';
 import HandlesLogging from './classes/HandlesLogging';
+import HandlesPlot from './classes/HandlesPlot';
 
 import InitListener from './listeners/Init';
 import AnnouncementsListener from './listeners/Announcements';
@@ -32,6 +33,7 @@ import InventoryListener from './listeners/Inventory';
 import EquippedGearListener from './listeners/EquippedGear';
 import ConsoleListener from './listeners/Console';
 import LoggingListener from './listeners/Logging';
+import PlotListener from './listeners/Plot';
 
 // Handle* objects.  These define both the event name, and the Reflux action used
 // to trigger the stores (TODO: This latter part is not working)
@@ -47,6 +49,7 @@ const handlesInventory: HandlesInventory = new HandlesInventory();
 const handlesEquippedGear: HandlesEquippedGear = new HandlesEquippedGear();
 const handlesConsole: HandlesConsole = new HandlesConsole();
 const handlesLogging: HandlesLogging = new HandlesLogging();
+const handlesPlot: HandlesPlot = new HandlesPlot();
 
 // Listeners
 const listeners: any = {
@@ -63,6 +66,7 @@ const listeners: any = {
   [handlesEquippedGear.topic]: new EquippedGearListener(handlesEquippedGear),
   [handlesConsole.topic]: new ConsoleListener(handlesConsole),
   [handlesLogging.topic]: new LoggingListener(handlesLogging),
+  [handlesPlot.topic]: new PlotListener(handlesPlot)
 };
 
 // Event Emitter.  A single instance of event emitter handles all cu-events events
@@ -106,6 +110,7 @@ export default {
   handlesEquippedGear,
   handlesConsole,
   handlesLogging,
+  handlesPlot,
   on,
   off,
   addListener,

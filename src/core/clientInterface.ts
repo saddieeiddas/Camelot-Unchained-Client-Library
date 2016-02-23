@@ -150,6 +150,10 @@ interface clientInterface {
 
   OnAnnouncement(c: (message: string, type: number) => void): void;
 
+  /* Plot */
+
+  OnPlotStatus(c: (plotOwned: boolean, permissions: number, charID: string, entityID: string) => void): void;
+
   /* Character */
 
   OnCharacterIDChanged(c: (id: string) => void): void;
