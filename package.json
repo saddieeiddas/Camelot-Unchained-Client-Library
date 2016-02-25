@@ -46,8 +46,7 @@
     "copy:definitions": "(robocopy lib\\ definitions\\ *.d.ts /s /mov) ^& IF %ERRORLEVEL% LEQ 1 exit 0",
     "copies": "npm run copy:definitions && npm run copy:third-party && npm run copy:misc",
     "prebuild": "npm run clean -s && npm run typings",
-    "build": "tsc && npm run sass && npm run copies && npm run babel && npm run browserify && npm run clean:tmp -s",
-    "publish": "npm run build"
+    "build": "tsc && npm run sass && npm run copies && npm run babel && npm run browserify && npm run clean:tmp -s"
   },
   "dependencies": {
     "bourbon": "^4.2.6",
