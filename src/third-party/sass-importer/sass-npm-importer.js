@@ -12,12 +12,14 @@ module.exports = function(url, file, done) {
     return done({ file:aliases[url] });
   }
   try {
-    var newPath = path.relative('./css', require.resolve(url));
+    var newPath = path.relative('.', require.resolve(url));
     aliases[url] = newPath;
+    console.log(newPath);
     // bourbon gives a js file.
     if (newPath.endsWith('.js')) {
       var module = require(url);
-      return done({file:module.includePaths[0] + '/' + url});
+      newPath = module.includePaths[0] + '/' + url;
+      aliases[url] = newPath;
     }
     return done({ file:newPath });
   } catch(e) {

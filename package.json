@@ -39,7 +39,7 @@
     "clean": "npm run clean:lib && npm run clean:tmp && npm run clean:definitions",
     "babel": "babel lib -d tmp",
     "browserify": "browserify tmp/index.js -o lib/camelot-unchained.js",
-    "sass": "node-sass src/ -o lib/",
+    "sass": "node-sass src/ -o lib/ --importer src/third-party/sass-importer/sass-npm-importer.js",
     "copy:third-party": "(robocopy src\\third-party lib\\third-party /s) ^& IF %ERRORLEVEL% LEQ 1 exit 0",
     "copy:misc": "(robocopy src\\ lib\\ /s /xf *.js /xf *.ts /xf *.tsx) ^& IF %ERRORLEVEL% LEQ 1 exit 0",
     "copy:tmp": "(robocopy tmp\\ lib\\ /s) ^& IF %ERRORLEVEL% LEQ 1 exit 0",
