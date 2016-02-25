@@ -3,7 +3,7 @@
   "version": "0.2.4",
   "description": "Camelot Unchained Client Library",
   "license": "MPL-2.0",
-  "main": "lib/main.js",
+  "main": "lib/index.js",
   "author": "City State Entertainment, LLC <support@citystateentertainment.com>",
   "contributors": [
     "JB (codecorsair) <jb@codecorsair.com>",
