@@ -3,7 +3,7 @@
         "target": "es6",
         "noImplicitAny": true,
         "removeComments": false,
-        "outDir": "./lib",
+        "outDir": "./tmp",
         "sourceMap": false,
         "jsx": "react",
         "module": "commonjs",
