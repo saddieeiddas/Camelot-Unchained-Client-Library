@@ -3,7 +3,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-import itemType from '../constants/itemType';
 import gearSlot from '../constants/gearSlot';
 /**
  * Item
@@ -14,11 +13,6 @@ declare class Item {
      * @type {string}
      */
     id: string;
-    /**
-     * The item Type
-     * @type {itemType}
-     */
-    type: itemType;
     /**
      * The Item Name
      * @type {string}
@@ -34,11 +28,6 @@ declare class Item {
      * @type {number}
      */
     resourceID: number;
-    /**
-     * The Item carryingRequirement
-     * @type {any}
-     */
-    carryingRequirement: any;
     /**
      * The Item gearSlot
      * @type {gearSlot}

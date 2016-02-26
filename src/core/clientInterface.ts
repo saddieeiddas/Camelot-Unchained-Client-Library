@@ -101,6 +101,8 @@ interface clientInterface {
 
   EquipItem(itemID: string): void;
 
+  DropItem(itemID: string): void;
+
   /* Config */
 
   OnReceiveConfigVars(c: (configs: string) => void): void;

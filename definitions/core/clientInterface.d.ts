@@ -60,6 +60,7 @@ interface clientInterface {
     UnequipItem(itemID: string): void;
     OnInventoryItemIDsChanged(callback: (inventoryItemIDs: string[]) => void): void;
     EquipItem(itemID: string): void;
+    DropItem(itemID: string): void;
     OnReceiveConfigVars(c: (configs: string) => void): void;
     OnReceiveConfigVar(c: (config: any) => void): void;
     OnConfigVarChanged(c: (isChangeSuccessful: boolean) => void): void;

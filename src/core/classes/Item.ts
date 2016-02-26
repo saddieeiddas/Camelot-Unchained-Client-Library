@@ -4,7 +4,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-import itemType from '../constants/itemType';
 import gearSlot from '../constants/gearSlot';
 
 /**
@@ -16,12 +15,6 @@ class Item  {
    * @type {string}
    */
   id: string;
-
-  /**
-   * The item Type
-   * @type {itemType}
-   */
-  type: itemType;
 
   /**
    * The Item Name
@@ -42,12 +35,6 @@ class Item  {
   resourceID: number;
 
   /**
-   * The Item carryingRequirement
-   * @type {any}
-   */
-  carryingRequirement: any;
-
-  /**
    * The Item gearSlot
    * @type {gearSlot}
    */
@@ -59,11 +46,9 @@ class Item  {
    */
   constructor(item: Item = <Item>{}) {
     this.id = item.id ||  "";
-    this.type = item.type;
     this.name = item.name ||  "";
     this.description = item.description ||  "";
     this.resourceID = item.resourceID;
-    this.carryingRequirement = item.carryingRequirement;
     this.gearSlot = item.gearSlot || gearSlot.NONE;
   }
 

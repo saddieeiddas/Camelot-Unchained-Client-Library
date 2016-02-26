@@ -18,7 +18,6 @@ import emotes from './constants/emotes';
 import race from './constants/race';
 import soundEvents from './constants/soundEvents';
 import tagConstraintType from './constants/tagConstraintType';
-import itemType from './constants/itemType';
 import gearSlot from './constants/gearSlot';
 import plotPermissions from './constants/plotPermissions';
 
@@ -57,7 +56,6 @@ export {
   race,
   soundEvents,
   tagConstraintType,
-  itemType,
   gearSlot,
   plotPermissions,
 
