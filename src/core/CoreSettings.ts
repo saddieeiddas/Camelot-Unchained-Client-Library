@@ -13,6 +13,8 @@ const defaults = {
 
   // GAME API - for server info, this will be merged into the single
   // api source in the future.
+  publicApiUrl: 'https://api.camelotunchained.com',
+  publicApiPort: 443,
   hatcheryApiUrl: 'https://hatchery.camelotunchained.com',
   hatcheryApiPort: 8000,
   wyrmlingApiUrl: 'https://wyrmling.camelotunchained.com',
@@ -29,6 +31,8 @@ const defaults = {
 class CoreSettings {
   public cseApiUrl: string = defaults.cseApiUrl;
   public cseApiPort: number = defaults.cseApiPort;
+  public publicApiUrl: string = defaults.hatcheryApiUrl;
+  public publicApiPort: number = defaults.hatcheryApiPort;
   public hatcheryApiUrl: string = defaults.hatcheryApiUrl;
   public hatcheryApiPort: number = defaults.hatcheryApiPort;
   public wyrmlingApiUrl: string = defaults.wyrmlingApiUrl;

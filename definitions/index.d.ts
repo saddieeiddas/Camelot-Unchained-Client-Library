@@ -34,4 +34,5 @@ import events from './events/events';
 import stores from './stores/stores';
 import components from './components/components';
 import { postPlotPermissions } from './restapi/RestAPI';
-export { CoreSettings, clientInterface, client, abilityTags, archetype, buildUIMode, channelId, emotes, race, soundEvents, tagConstraintType, gearSlot, plotPermissions, Ability, Combatant, Player, Character, ControlGame, Injury, Population, Inventory, Item, EquippedGear, LogMessage, ChatMessage, ConsoleMessage, core, events, stores, components, postPlotPermissions };
+import * as restAPI from './restapi/RestAPI';
+export { CoreSettings, clientInterface, client, abilityTags, archetype, buildUIMode, channelId, emotes, race, soundEvents, tagConstraintType, gearSlot, plotPermissions, Ability, Combatant, Player, Character, ControlGame, Injury, Population, Inventory, Item, EquippedGear, LogMessage, ChatMessage, ConsoleMessage, core, events, stores, components, postPlotPermissions, restAPI };
