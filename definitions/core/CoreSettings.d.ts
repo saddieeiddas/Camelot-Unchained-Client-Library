@@ -7,6 +7,8 @@ import channelId from './constants/channelId';
 declare class CoreSettings {
     cseApiUrl: string;
     cseApiPort: number;
+    publicApiUrl: string;
+    publicApiPort: number;
     hatcheryApiUrl: string;
     hatcheryApiPort: number;
     wyrmlingApiUrl: string;
