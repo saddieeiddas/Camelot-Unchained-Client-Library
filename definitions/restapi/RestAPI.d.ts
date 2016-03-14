@@ -4,11 +4,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 import { Promise } from 'es6-promise';
-import * as GameData from './resources/GameData';
-import * as Servers from './resources/Servers';
-import * as Characters from './resources/Characters';
-declare function getCraftedAbilities(loginToken: string, characterID: string): Promise<any>;
-declare function getControlGame(includeControlPoints?: boolean): Promise<any>;
-declare function getAllPlayers(): Promise<any>;
-declare function postPlotPermissions(query: Object): Promise<any>;
-export { getCraftedAbilities, getControlGame, getAllPlayers, postPlotPermissions, GameData, Servers, Characters };
+export declare function getCraftedAbilities(loginToken: string, characterID: string): Promise<any>;
+export declare function getControlGame(includeControlPoints?: boolean): Promise<any>;
+export declare function getAllPlayers(): Promise<any>;
+export declare function postPlotPermissions(query: Object): Promise<any>;
+export * from './resources/GameData';
+export * from './resources/Servers';
+export * from './resources/Characters';

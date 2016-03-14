@@ -9,12 +9,12 @@ import archetype from '../../core/constants/archetype';
 import faction from '../../core/constants/faction';
 import gender from '../../core/constants/gender';
 import race from '../../core/constants/race';
-export declare function getCharacters(): Promise<CharacterListResponse[]>;
-export declare function getCharactersOnShard(shardID?: number): Promise<CharacterListResponse[]>;
-export declare function getCharacterOnShard(shardID: number, characterID: string): Promise<CharacterResponse>;
+export declare function getCharacters(): Promise<SimpleCharacter[]>;
+export declare function getCharactersOnShard(shardID?: number): Promise<SimpleCharacter[]>;
+export declare function getCharacterOnShard(shardID: number, characterID: string): Promise<Character>;
 export declare function deleteCharacterOnShard(shardID: number, characterID: string): Promise<any>;
 export declare function createCharacter(shardID: number, channelId: channelId, data: CharacterCreateRequest): Promise<any>;
-export interface CharacterListResponse {
+export interface SimpleCharacter {
     archetype: archetype;
     faction: faction;
     gender: gender;
@@ -24,7 +24,7 @@ export interface CharacterListResponse {
     race: race;
     shardID: number;
 }
-export interface CharacterResponse {
+export interface Character {
     archetype: archetype;
     faction: faction;
     gender: gender;

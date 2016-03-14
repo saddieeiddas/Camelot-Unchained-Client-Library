@@ -14,17 +14,17 @@ import gender from '../../core/constants/gender';
 import race from '../../core/constants/race';
 
 // Get Characters
-export function getCharacters(): Promise<CharacterListResponse[]> {
+export function getCharacters(): Promise<SimpleCharacter[]> {
   return RestClient.getJSON('/characters', true);
 }
 
 // Get Characters On Shard
-export function getCharactersOnShard(shardID: number = 1): Promise<CharacterListResponse[]> {
+export function getCharactersOnShard(shardID: number = 1): Promise<SimpleCharacter[]> {
   return RestClient.getJSON(`/characters/${shardID}`, true);
 }
 
 // Get Character On Shard
-export function getCharacterOnShard(shardID: number, characterID: string): Promise<CharacterResponse> {
+export function getCharacterOnShard(shardID: number, characterID: string): Promise<Character> {
   return RestClient.getJSON(`/characters/${shardID}/${characterID}`, true);
 }
 
@@ -36,15 +36,14 @@ export function deleteCharacterOnShard(shardID: number, characterID: string) {
 // Create a Character
 export function createCharacter(shardID: number, channelId: channelId, data: CharacterCreateRequest) {
   return RestClient.postJSON(`/characters/${shardID}/${channelId}`, true, data)
-    .then(RestUtil.getPath)
-    // API is returing the full URL get getCharacterOnShard with the ID, so we will call that path to obtain the newly created character
+    // API is returing the full URL get getCharacterOnShard with the ID, we will strip out the ID and return it
     .then((path) => {
-      return RestClient.getJSON(path, true);
+      return path.split('/').pop();
     });
 }
 
 // Response when calling getCharacters or getCharactersOnShard
-export interface CharacterListResponse {
+export interface SimpleCharacter {
   archetype: archetype;
   faction: faction;
   gender: gender;
@@ -56,7 +55,7 @@ export interface CharacterListResponse {
 }
 
 // Response when calling getCharacterOnShard
-export interface CharacterResponse {
+export interface Character {
   archetype: archetype;
   faction: faction;
   gender: gender;

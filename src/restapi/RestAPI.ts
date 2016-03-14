@@ -6,12 +6,9 @@
 
 import {Promise} from 'es6-promise';
 import * as RestClientLegacy from './RestClientLegacy';
-import * as GameData from './resources/GameData';
-import * as Servers from './resources/Servers';
-import * as Characters from './resources/Characters';
 
 // TODO update this to use new Rest Client
-function getCraftedAbilities(loginToken: string, characterID: string) {
+export function getCraftedAbilities(loginToken: string, characterID: string) {
   return RestClientLegacy.getJSON('craftedabilities', false, {
     loginToken: loginToken,
     characterID: characterID
@@ -19,26 +16,25 @@ function getCraftedAbilities(loginToken: string, characterID: string) {
 }
 
 // TODO update this to use new Rest Client
-function getControlGame(includeControlPoints: boolean = false) {
+export function getControlGame(includeControlPoints: boolean = false) {
   return RestClientLegacy.getJSON('game/controlgame', false, { includeControlPoints: includeControlPoints });
 }
 
 // TODO update this to use new Rest Client
-function getAllPlayers() {
+export function getAllPlayers() {
   return RestClientLegacy.getJSON('game/players');
 }
 
 // TODO update this to use new Rest Client
-function postPlotPermissions(query: Object) {
+export function postPlotPermissions(query: Object) {
   return RestClientLegacy.postJSON('plot/modifypermissions', true, false, query);
 }
 
-export {
-  getCraftedAbilities,
-  getControlGame,
-  getAllPlayers,
-  postPlotPermissions,
-  GameData,
-  Servers,
-  Characters,
-}
+// Game Data
+export * from './resources/GameData';
+
+// Servers
+export * from './resources/Servers';
+
+// Characters
+export * from './resources/Characters';
