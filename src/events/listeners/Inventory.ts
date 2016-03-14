@@ -12,43 +12,13 @@ import Item from '../../core/classes/Item';
 
 function run(emitter: EventEmitter, topic: string) {
   const inventory = new Inventory();
-  const queue: string[] = [];
-  client.OnItemEquipped((id: string) => {
-    inventory.removeItem(id);
+  client.OnInventoryAdded((item: Item) => {
+    inventory.addItem(item);
+    emitter.emit(topic, inventory);
   });
-  client.OnItemUnequipped((id: string) => {
-    queue.push(id);
-    client.GetItem(id);
-  });
-  client.OnInventoryItemIDsChanged((ids: string[]) => {
-    const existingItemIDs = inventory.getItemIDs();
-    ids.forEach((id: string) => {
-      if (inventory.hasItem(id)) {
-        existingItemIDs.splice(existingItemIDs.indexOf(id), 1);
-      } else {
-        queue.push(id);
-      }
-    });
-    existingItemIDs.forEach((id: string) => {
-      inventory.removeItem(id);
-    });
-    if (queue.length > 0) {
-      queue.forEach((id: string) => {
-        client.GetItem(id);
-      });
-    } else {
-      emitter.emit(topic, inventory);
-    }
-  });
-  client.OnGetItem((item: any) => {
-    item.id = item.itemID;
-    if (queue.indexOf(item.id) >= 0) {
-      queue.splice(queue.indexOf(item.id), 1);
-      inventory.addItem(new Item(item));
-      if (queue.length === 0) {
-        emitter.emit(topic, inventory);
-      }
-    }
+  client.OnInventoryRemoved((itemID: string) => {
+    inventory.removeItem(itemID);
+    emitter.emit(topic, inventory);
   });
 }
 

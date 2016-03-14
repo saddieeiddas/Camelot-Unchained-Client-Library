@@ -5,6 +5,7 @@
  */
 import configGroup from './config/configGroup';
 import race from './constants/race';
+import Item from './classes/Item';
 interface clientInterface {
     initialized: boolean;
     OnInitialized(c: () => void): number;
@@ -52,13 +53,13 @@ interface clientInterface {
     OnAbilityActive(c: (currentAbility: string, timeStarted: number, timeTriggered: number, queuedAbility: string) => any): number;
     CancelOnAbilityActive(c: number): void;
     OnAbilityError(c: (message: string) => void): void;
-    GetItem(itemID: string): void;
-    OnGetItem(callback: (itemID: string, data: string) => void): void;
-    OnItemEquipped(callback: (itemID: string) => void): void;
-    OnItemUnequipped(callback: (itemID: string) => void): void;
-    OnEquippedGearItemIDsChanged(callback: (gearItemIDs: string[]) => void): void;
+    SubscribeGear(subscribe: boolean): void;
+    OnGearAdded(callback: (item: Item) => void): void;
+    OnGearRemoved(callback: (itemID: string) => void): void;
     UnequipItem(itemID: string): void;
-    OnInventoryItemIDsChanged(callback: (inventoryItemIDs: string[]) => void): void;
+    SubscribeInventory(subscribe: boolean): void;
+    OnInventoryAdded(callback: (item: Item) => void): void;
+    OnInventoryRemoved(callback: (itemID: string) => void): void;
     EquipItem(itemID: string): void;
     DropItem(itemID: string): void;
     OnReceiveConfigVars(c: (configs: string) => void): void;
