@@ -33,3 +33,9 @@ export function makeQueryString(url: string, params: any = {}): string {
   }
   return url;
 }
+
+export function getPath(url: string) {
+  const parts = url.split('/');
+  parts.shift();
+  return '/' + parts.join('/');
+}

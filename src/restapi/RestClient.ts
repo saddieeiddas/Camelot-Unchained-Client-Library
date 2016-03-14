@@ -62,21 +62,43 @@ function makeAPIUrl(endpoint: string): string {
   return url + '/' + endpoint.replace(/^\//g, '');
 }
 
-export function getJSON(endpoint: string, useHttps: boolean = false, query: any = {}): Promise<any> {
-  return fetch(RestUtil.makeQueryString(makeAPIUrl(endpoint), query))
+function makeDefaultHeaders(requireAuth: boolean, version: number = 1): any {
+  const headers: any = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'api-version': `${version}`
+  };
+  if (requireAuth) {
+    headers.loginToken = settings.apiToken
+  }
+  return headers;
+}
+
+export function getJSON(endpoint: string, requireAuth: boolean = false, query: any = {}, version: number = 1): Promise<any> {
+  const headers = makeDefaultHeaders(requireAuth, version);
+  return fetch(RestUtil.makeQueryString(makeAPIUrl(endpoint), query), {
+    method: 'get',
+    headers: headers
+  })
+    .then(RestUtil.checkStatus)
+    .then(RestUtil.parseJSON);
+}
+
+export function deleteJSON(endpoint: string, requireAuth: boolean = false, query: any = {}, version: number = 1): Promise<any> {
+  const headers = makeDefaultHeaders(requireAuth, version);
+  return fetch(RestUtil.makeQueryString(makeAPIUrl(endpoint), query), {
+    method: 'delete',
+    headers: headers
+  })
     .then(RestUtil.checkStatus)
     .then(RestUtil.parseJSON);
 }
 
 export function postJSON(endpoint: string, requireAuth: boolean = false, data: any = {}, version: number = 1): Promise<any> {
+  const headers = makeDefaultHeaders(requireAuth, version);
   return fetch(makeAPIUrl(endpoint), {
     method: 'post',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'api-version': `${version}`,
-      'loginToken': client.loginToken
-    },
+    headers: headers,
     body: JSON.stringify(data)
   })
     .then(RestUtil.checkStatus)
