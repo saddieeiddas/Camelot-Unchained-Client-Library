@@ -5,7 +5,6 @@
  */
 
 import {Promise} from 'es6-promise';
-import * as RestClient from './RestClient';
 import * as RestClientLegacy from './RestClientLegacy';
 
 // TODO update this to use new Rest Client
@@ -30,3 +29,12 @@ export function getAllPlayers() {
 export function postPlotPermissions(query: Object) {
   return RestClientLegacy.postJSON('plot/modifypermissions', true, false, query);
 }
+
+// Game Data
+export * from './resources/GameData';
+
+// Servers
+export * from './resources/Servers';
+
+// Characters
+export * from './resources/Characters';

@@ -31,8 +31,8 @@ const defaults = {
 class CoreSettings {
   public cseApiUrl: string = defaults.cseApiUrl;
   public cseApiPort: number = defaults.cseApiPort;
-  public publicApiUrl: string = defaults.hatcheryApiUrl;
-  public publicApiPort: number = defaults.hatcheryApiPort;
+  public publicApiUrl: string = defaults.publicApiUrl;
+  public publicApiPort: number = defaults.publicApiPort;
   public hatcheryApiUrl: string = defaults.hatcheryApiUrl;
   public hatcheryApiPort: number = defaults.hatcheryApiPort;
   public wyrmlingApiUrl: string = defaults.wyrmlingApiUrl;

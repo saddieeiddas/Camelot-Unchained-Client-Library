@@ -5,5 +5,6 @@
  */
 import 'isomorphic-fetch';
 import { Promise } from 'es6-promise';
-export declare function getJSON(endpoint: string, useHttps?: boolean, query?: any): Promise<any>;
+export declare function getJSON(endpoint: string, requireAuth?: boolean, query?: any, version?: number): Promise<any>;
+export declare function deleteJSON(endpoint: string, requireAuth?: boolean, query?: any, version?: number): Promise<any>;
 export declare function postJSON(endpoint: string, requireAuth?: boolean, data?: any, version?: number): Promise<any>;

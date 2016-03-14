@@ -20,6 +20,9 @@ import soundEvents from './constants/soundEvents';
 import tagConstraintType from './constants/tagConstraintType';
 import gearSlot from './constants/gearSlot';
 import plotPermissions from './constants/plotPermissions';
+import attributeType from './constants/attributeType';
+import faction from './constants/faction';
+import gender from './constants/gender';
 
 // config
 export * from './config/config';
@@ -58,6 +61,9 @@ export {
   tagConstraintType,
   gearSlot,
   plotPermissions,
+  attributeType,
+  faction,
+  gender,
 
   // core classes
   Ability,

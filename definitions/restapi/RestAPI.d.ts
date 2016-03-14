@@ -8,3 +8,6 @@ export declare function getCraftedAbilities(loginToken: string, characterID: str
 export declare function getControlGame(includeControlPoints?: boolean): Promise<any>;
 export declare function getAllPlayers(): Promise<any>;
 export declare function postPlotPermissions(query: Object): Promise<any>;
+export * from './resources/GameData';
+export * from './resources/Servers';
+export * from './resources/Characters';
